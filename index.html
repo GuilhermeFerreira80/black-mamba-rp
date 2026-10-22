@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Mamba — Sistema de Encomendas</title>
+  <meta name="description" content="Sistema de encomendas e calculadora de barragens para GTA RP." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">🐍</div>
+        <div class="logo-text">
+          <span class="logo-title">BLACK MAMBA</span>
+          <span class="logo-sub">Sistema de Encomendas</span>
+          <span class="logo-credit">feito pelo Ferreirauhau</span>
+        </div>
+      </div>
+      <div class="header-nav">
+        <button class="nav-tab active" id="nav-catalog" onclick="switchMainTab('catalog')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Encomendas
+        </button>
+        <button class="nav-tab" id="nav-heist" onclick="switchMainTab('heist')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Barragens
+        </button>
+        <button class="nav-tab" id="nav-parcerias" onclick="switchMainTab('parcerias')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Parcerias & Tabelas
+        </button>
+      </div>
+      <div class="header-right">
+        <button class="auth-logout-btn" id="logoutBtn" onclick="logout()" title="Bloquear / Sair da sessão" style="display:none">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          <span>Sair</span>
+        </button>
+        <button class="cart-btn" id="cartBtn" onclick="toggleCart()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span>Carrinho</span>
+          <div class="cart-badge" id="cartBadge">0</div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== PÁGINA ENCOMENDAS ===== -->
+  <div class="app-page" id="page-catalog">
+    <div class="layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-tabs">
+          <button class="stab active" id="stab-catalog" onclick="switchSidebarTab('catalog')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            Catálogo
+          </button>
+          <button class="stab" id="stab-config" onclick="switchSidebarTab('config')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
+            Config
+          </button>
+        </div>
+
+        <!-- CATALOG PANEL -->
+        <div id="panel-catalog">
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">Categoria</h3>
+            <div class="filter-group" id="categoryFilters">
+              <button class="filter-btn active" data-cat="all" onclick="filterCategory('all')">Tudo</button>
+              <button class="filter-btn" data-cat="bairro" onclick="filterCategory('bairro')">🏘️ Bairro</button>
+              <button class="filter-btn" data-cat="org" onclick="filterCategory('org')">⚔️ Org</button>
+              <button class="filter-btn" data-cat="acessorios" onclick="filterCategory('acessorios')">🔧 Acessórios</button>
+              <button class="filter-btn" data-cat="coletes" onclick="filterCategory('coletes')">🛡️ Coletes</button>
+              <button class="filter-btn" data-cat="bar" onclick="filterCategory('bar')">🍹 Bar</button>
+              <button class="filter-btn" data-cat="moto" onclick="filterCategory('moto')">🏍️ Motoclube</button>
+              <button class="filter-btn" data-cat="mesa" onclick="filterCategory('mesa')">⚗️ Mesa Química</button>
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">Tipo</h3>
+            <div class="filter-group" id="typeFilters">
+              <button class="filter-btn active" data-type="all" onclick="filterType('all')">Todos</button>
+              <button class="filter-btn" data-type="Básica" onclick="filterType('Básica')">⚙️ Básica</button>
+              <button class="filter-btn" data-type="Avançada" onclick="filterType('Avançada')">🔬 Avançada</button>
+              <button class="filter-btn" data-type="Pistol" onclick="filterType('Pistol')">🔫 Pistola</button>
+              <button class="filter-btn" data-type="SMG" onclick="filterType('SMG')">💥 SMG</button>
+              <button class="filter-btn" data-type="Rifle" onclick="filterType('Rifle')">🎯 Rifle</button>
+            </div>
+          </div>
+          <div class="sidebar-section sidebar-info">
+            <h3 class="sidebar-title">Info</h3>
+            <div class="info-box">
+              <div class="info-row"><span>Itens:</span><span id="sidebarTotal">0</span></div>
+              <div class="info-row"><span>No carrinho:</span><span id="sidebarCartCount">0</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONFIG PANEL -->
+        <div id="panel-config" style="display:none">
+          <div class="cfg-header">
+            <p class="cfg-desc">Edita preços e materiais por unidade. As alterações aplicam-se imediatamente aos cards e ao carrinho.</p>
+            <div class="cfg-actions-top">
+              <button class="cfg-btn-reset" onclick="resetAllConfig()">↺ Repor Padrão</button>
+              <button class="cfg-btn-save" onclick="saveConfigToStorage()">💾 Guardar</button>
+            </div>
+          </div>
+          <div class="cfg-search-wrap">
+            <input class="cfg-search" id="cfgSearch" type="text" placeholder="🔍 Pesquisar produto..." oninput="filterConfigList()" />
+          </div>
+          <div class="cfg-list" id="cfgList"></div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <div class="page-title-area">
+          <h1 class="page-title">Catálogo <span class="gradient-text">Black Mamba</span></h1>
+          <p class="page-sub">Escolhe os produtos, define a quantidade e vê os materiais necessários em tempo real.</p>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ===== PÁGINA BARRAGENS ===== -->
+  <div class="app-page" id="page-heist" style="display:none">
+    <div class="heist-layout">
+
+      <!-- HEIST ITEMS -->
+      <div class="heist-left">
+        <div class="heist-section-title">
+          <span>🏦</span> Itens de Loot
+          <span class="heist-hint">Define a quantidade de cada item apanhado</span>
+        </div>
+        <div class="heist-search-wrap">
+          <input class="heist-search" id="heistSearch" type="text" placeholder="🔍 Filtrar itens..." oninput="filterHeistItems()" />
+        </div>
+        <div class="heist-items-grid" id="heistItemsGrid"></div>
+      </div>
+
+      <!-- HEIST SUMMARY -->
+      <div class="heist-right">
+        <div class="heist-summary-card">
+          <div class="heist-section-title" style="margin-bottom:16px">
+            <span>💰</span> Resumo Financeiro
+          </div>
+
+          <div class="heist-stat-row">
+            <span class="heist-stat-label">Subtotal Bruto</span>
+            <span class="heist-stat-val" id="heistGross">0 €</span>
+          </div>
+
+          <div class="heist-discount-row">
+            <label class="heist-stat-label">% Desconto / Taxa</label>
+            <div class="heist-discount-input-wrap">
+              <input class="heist-pct-input" id="heistDiscount" type="number" value="0" min="0" max="100" step="1" oninput="calcHeistTotal()" />
+              <span class="heist-pct-sym">%</span>
+            </div>
+          </div>
+          <div class="heist-preset-chips">
+            <button type="button" class="heist-chip active" id="chip-0" onclick="setHeistDiscount(0)">0%</button>
+            <button type="button" class="heist-chip" id="chip-10" onclick="setHeistDiscount(10)">10% Bar (Barragem)</button>
+            <button type="button" class="heist-chip" id="chip-15" onclick="setHeistDiscount(15)">15% Lavagem</button>
+          </div>
+
+          <div class="heist-stat-row">
+            <span class="heist-stat-label">Valor Descontado</span>
+            <span class="heist-stat-val negative" id="heistDiscountVal">− 0 €</span>
+          </div>
+
+          <div class="heist-divider"></div>
+
+          <div class="heist-stat-row heist-total-row">
+            <span class="heist-stat-label-big">💵 VALOR LÍQUIDO</span>
+            <span class="heist-stat-val-big" id="heistNet">0 €</span>
+          </div>
+
+          <div class="heist-split-section">
+            <div class="heist-section-title" style="font-size:12px;margin:16px 0 10px">
+              <span>👥</span> Divisão por membros
+            </div>
+            <div class="heist-members-row">
+              <button class="heist-mbr-btn" onclick="changeMembers(-1)">−</button>
+              <span class="heist-mbr-count" id="heistMembers">4</span>
+              <button class="heist-mbr-btn" onclick="changeMembers(1)">+</button>
+              <span class="heist-mbr-label">membros</span>
+            </div>
+            <div class="heist-stat-row" style="margin-top:10px">
+              <span class="heist-stat-label">Por membro</span>
+              <span class="heist-stat-val green" id="heistPerMember">0 €</span>
+            </div>
+          </div>
+
+          <div class="heist-actions">
+            <button class="btn-secondary" onclick="resetHeist()">🗑️ Limpar</button>
+            <button class="btn-primary" onclick="exportHeist()">📋 Exportar</button>
+          </div>
+        </div>
+
+        <!-- Quick items ranking -->
+        <div class="heist-summary-card" id="heistRankCard" style="margin-top:14px;display:none">
+          <div class="heist-section-title" style="margin-bottom:12px"><span>📊</span> Itens no Loot</div>
+          <div id="heistRankList"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== PÁGINA PARCERIAS & TABELAS ===== -->
+  <div class="app-page" id="page-parcerias" style="display:none">
+    <div class="parcerias-layout">
+      
+      <!-- BAR & DRAGON -->
+      <div class="parceria-card card-bar">
+        <div class="parceria-card-header">
+          <div class="parceria-badge bar-badge">🏮 Parceria Oficial</div>
+          <h2 class="parceria-title">Tabela de Serviços — <span class="dragon-gold">Bar</span></h2>
+          <p class="parceria-sub">Serviços gerais, lavagem e bebidas energéticas</p>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>⚡</span> Percentagens de Serviços</h3>
+          <table class="parceria-table">
+            <thead>
+              <tr>
+                <th>Serviço</th>
+                <th style="text-align:right">Taxa / %</th>
+                <th style="text-align:right">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="service-dot red"></span> Lavagem</td>
+                <td class="rate-val red">15%</td>
+                <td style="text-align:right"><button class="btn-chip" onclick="applyHeistTaxAndOpen(15)">Usar 15%</button></td>
+              </tr>
+              <tr>
+                <td><span class="service-dot gold"></span> Barragem</td>
+                <td class="rate-val gold">10%</td>
+                <td style="text-align:right"><button class="btn-chip gold" onclick="applyHeistTaxAndOpen(10)">Usar nas Barragens</button></td>
+              </tr>
+              <tr>
+                <td><span class="service-dot green"></span> Encomendas e Ferro Velho</td>
+                <td class="rate-val green">10%</td>
+                <td style="text-align:right"><span class="badge-tag">Padrão</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>🥤</span> Parcerias — Bebidas Energéticas</h3>
+          <div class="energy-options">
+            <div class="energy-card">
+              <div class="energy-card-top">
+                <span class="energy-type">✅ Com Materiais</span>
+                <span class="energy-price">4.000 €</span>
+              </div>
+              <div class="energy-mats">
+                <span class="mat-chip">🥫 1 Lata</span>
+                <span class="mat-chip">💊 3 Estimulantes</span>
+              </div>
+              <button class="btn-add-quick" onclick="quickAdd('energetico_mat')">+ Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="energy-card">
+              <div class="energy-card-top">
+                <span class="energy-type">✅ Sem Materiais</span>
+                <span class="energy-price">12.000 €</span>
+              </div>
+              <div class="energy-mats">
+                <span class="mat-chip empty">Sem materiais necessários</span>
+              </div>
+              <button class="btn-add-quick" onclick="quickAdd('energetico_sem')">+ Adicionar ao Carrinho</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE LOST MC -->
+      <div class="parceria-card card-lostmc">
+        <div class="parceria-card-header">
+          <div class="parceria-badge mc-badge">🏍️ The Lost MC • Los Santos</div>
+          <h2 class="parceria-title">The Lost MC — <span class="mc-orange">Oficina & Precários</span></h2>
+          <p class="parceria-sub">Nós somos o Motoclube a parceria é com os BlackMamba (Bairro)</p>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>🔧</span> Descontos na Nossa Oficina</h3>
+          <table class="parceria-table">
+            <thead>
+              <tr>
+                <th>Cargo / Patente</th>
+                <th style="text-align:right">Desconto</th>
+                <th>Serviço</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>OG</strong></td>
+                <td class="rate-val orange">35%</td>
+                <td class="service-note">Em todos os serviços de oficina</td>
+              </tr>
+              <tr>
+                <td><strong>SUB OG</strong></td>
+                <td class="rate-val orange">30%</td>
+                <td class="service-note">Em todos os serviços de oficina</td>
+              </tr>
+              <tr>
+                <td><strong>Braço Direito</strong></td>
+                <td class="rate-val orange">25%</td>
+                <td class="service-note">Em todos os serviços de oficina</td>
+              </tr>
+              <tr>
+                <td><strong>Oficial</strong></td>
+                <td class="rate-val orange">20%</td>
+                <td class="service-note">Em todos os serviços de oficina</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>🔧 <strong>Reparações Gerais</strong></td>
+                <td class="rate-val green" colspan="2">2.000 € (Para Todos)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>📦</span> Precário de Tacos + Medickits</h3>
+          <div class="mc-grid">
+            <div class="mc-item">
+              <div class="mc-item-header">
+                <span class="mc-item-name">🏏 Tacos (Lucille)</span>
+                <span class="mc-item-price">15.000 € <small>sujos</small></span>
+              </div>
+              <div class="mc-item-mats">10 Peças Básicas (cada)</div>
+              <button class="btn-add-quick" onclick="quickAdd('taco_lost')">+ Adicionar Taco</button>
+            </div>
+            <div class="mc-item">
+              <div class="mc-item-header">
+                <span class="mc-item-name">🩹 Medickits</span>
+                <span class="mc-item-price">25.000 €</span>
+              </div>
+              <div class="mc-item-mats">5 Óleos (cada)</div>
+              <button class="btn-add-quick" onclick="quickAdd('medickit_lost')">+ Adicionar Medickit</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>🛡️</span> Processos (Trocas Policiais)</h3>
+          <div class="process-list">
+            <div class="process-card">
+              <div class="process-info">
+                <div class="process-name">➕ Medickit da Polícia</div>
+                <div class="process-desc">2 Medickits da polícia + 1.500 € sujos ➔ <strong>1 Medickit</strong></div>
+              </div>
+              <button class="btn-chip" onclick="quickAdd('proc_medickit')">+ Pedir</button>
+            </div>
+            <div class="process-card">
+              <div class="process-info">
+                <div class="process-name">🦺 Colete da Polícia</div>
+                <div class="process-desc">2 Coletes da polícia + 1.500 € sujos ➔ <strong>1 Colete</strong></div>
+              </div>
+              <button class="btn-chip" onclick="quickAdd('proc_colete')">+ Pedir</button>
+            </div>
+            <div class="process-card">
+              <div class="process-info">
+                <div class="process-name">⚡ Energético da Polícia</div>
+                <div class="process-desc">2 Energéticos da polícia ➔ <strong>1 Energético</strong></div>
+              </div>
+              <button class="btn-chip" onclick="quickAdd('proc_energetico')">+ Pedir</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="parceria-footer-note">
+          1% • NÓS SOMOS O MOTOCLUBE A PARCERIA É COM OS BLACKMAMBA (BAIRRO) • 1%
+        </div>
+      </div>
+
+      <!-- CARTEL MADRAZO (C4) -->
+      <div class="parceria-card card-madrazo">
+        <div class="parceria-card-header">
+          <div class="parceria-badge madrazo-badge">👑 Cartel Madrazo • C4</div>
+          <h2 class="parceria-title">Cartel Madrazo — <span class="madrazo-gold">Acessórios & Coletes</span></h2>
+          <p class="parceria-sub">"O poder tem um preço." • QUALIDADE • CONFIANÇA • RESPEITO</p>
+        </div>
+
+        <div class="parceria-section">
+          <div class="madrazo-filter-bar">
+            <span class="madrazo-filter-label">Filtrar Acessórios:</span>
+            <button class="c4-filter-btn active" onclick="filterC4Table('all')">Todos</button>
+            <button class="c4-filter-btn" onclick="filterC4Table('pistol')">🔫 Pistola</button>
+            <button class="c4-filter-btn" onclick="filterC4Table('smg')">💥 SMG</button>
+            <button class="c4-filter-btn" onclick="filterC4Table('rifle')">🎯 Rifle</button>
+            <button class="c4-filter-btn" onclick="filterC4Table('colete')">🛡️ Colete</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="c4-table" id="c4Table">
+              <thead>
+                <tr>
+                  <th>Item / Acessório</th>
+                  <th>Materiais Necessários</th>
+                  <th style="text-align:right">Civil</th>
+                  <th style="text-align:right">Parceria</th>
+                  <th style="text-align:center">Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- PISTOL -->
+                <tr data-c4type="pistol" class="c4-category-header">
+                  <td colspan="5">🔫 ACESSÓRIOS PISTOL</td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>Compensado</strong></td>
+                  <td><span class="c4-mat">2 Alumínio</span><span class="c4-mat">2 Aço</span></td>
+                  <td class="c4-price-civ">1.850 €</td>
+                  <td class="c4-price-parc">1.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('comp_pistol')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>EXT. clip</strong></td>
+                  <td><span class="c4-mat">3 Alumínio</span><span class="c4-mat">3 Plástico</span></td>
+                  <td class="c4-price-civ">3.750 €</td>
+                  <td class="c4-price-parc">2.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('extclip_pistol')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>Flashlight</strong></td>
+                  <td><span class="c4-mat">1 Restos</span></td>
+                  <td class="c4-price-civ">2.000 €</td>
+                  <td class="c4-price-parc">1.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('flash_pistol')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>Scope</strong></td>
+                  <td><span class="c4-mat">1 Restos</span></td>
+                  <td class="c4-price-civ">2.000 €</td>
+                  <td class="c4-price-parc">1.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('scope_pistol')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>Suppressor</strong></td>
+                  <td><span class="c4-mat">3 Alumínio</span><span class="c4-mat">3 Plástico</span></td>
+                  <td class="c4-price-civ">3.750 €</td>
+                  <td class="c4-price-parc">2.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('sup_pistol')">+ Pedir</button></td>
+                </tr>
+
+                <!-- SMG -->
+                <tr data-c4type="smg" class="c4-category-header">
+                  <td colspan="5">💥 ACESSÓRIOS SMG</td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>EXT. clip</strong></td>
+                  <td><span class="c4-mat">7 Alumínio</span><span class="c4-mat">7 Plástico</span></td>
+                  <td class="c4-price-civ">8.500 €</td>
+                  <td class="c4-price-parc">6.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('extclip_smg')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>Flashlight</strong></td>
+                  <td><span class="c4-mat">1 Restos</span></td>
+                  <td class="c4-price-civ">2.500 €</td>
+                  <td class="c4-price-parc">1.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('flash_smg')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>Scope</strong></td>
+                  <td><span class="c4-mat">1 Restos</span></td>
+                  <td class="c4-price-civ">2.500 €</td>
+                  <td class="c4-price-parc">1.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('scope_smg')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>Suppressor</strong></td>
+                  <td><span class="c4-mat">5 Alumínio</span><span class="c4-mat">5 Plástico</span></td>
+                  <td class="c4-price-civ">5.500 €</td>
+                  <td class="c4-price-parc">4.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('sup_smg')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>Drum</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('drum_smg')">+ Pedir</button></td>
+                </tr>
+
+                <!-- RIFLE -->
+                <tr data-c4type="rifle" class="c4-category-header">
+                  <td colspan="5">🎯 ACESSÓRIOS RIFLE</td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>EXT. clip</strong></td>
+                  <td><span class="c4-mat">12 Alumínio</span><span class="c4-mat">12 Plástico</span></td>
+                  <td class="c4-price-civ">14.500 €</td>
+                  <td class="c4-price-parc">10.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('extclip_rifle')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>Suppressor</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('sup_rifle')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>Heavy Barrel</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('heavybarrel')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>Muzzle (precision)</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('muzzle')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>Grip/SMG</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('grip_rifle')">+ Pedir</button></td>
+                </tr>
+
+                <!-- COLETE -->
+                <tr data-c4type="colete" class="c4-category-header">
+                  <td colspan="5">🛡️ COLETES</td>
+                </tr>
+                <tr data-c4type="colete">
+                  <td><strong>Colete Fortalecido</strong></td>
+                  <td><span class="c4-mat">3 Pele</span><span class="c4-mat">5 Fibra</span><span class="c4-mat">5 Tecido</span><span class="c4-mat">2 Couro</span></td>
+                  <td class="c4-price-civ">12.500 €</td>
+                  <td class="c4-price-parc">12.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('colete_fort')">+ Pedir</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="parceria-footer-note c4-footer">
+          👑 C4 • CARTEL MADRAZO — FORNECEDOR OFICIAL BLACK MAMBA • 👑
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Cart overlay + panel -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h2 class="cart-title">🛒 Carrinho</h2>
+      <button class="cart-close" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-body">
+      <div class="cart-empty" id="cartEmpty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>O teu carrinho está vazio</p>
+        <span>Adiciona produtos para ver os materiais necessários</span>
+      </div>
+      <div id="cartItems"></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="materials-section">
+        <h3 class="materials-title">📦 Materiais Necessários</h3>
+        <div class="materials-grid" id="materialsGrid"></div>
+      </div>
+      <div class="materials-section" id="rawMatSection">
+        <h3 class="materials-title">⛏️ Matérias-Primas</h3>
+        <div class="materials-grid" id="rawMaterialsGrid"></div>
+      </div>
+      <div class="cart-actions">
+        <button class="btn-secondary" onclick="clearCart()">🗑️ Limpar</button>
+        <button class="btn-primary" onclick="exportOrder()">📋 Exportar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="modal-overlay" id="modalOverlay" style="display:none" onclick="closeModal()">
+    <div class="modal" id="exportModal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 id="modalTitle">📋 Resumo</h2>
+        <button class="cart-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeModal()">Fechar</button>
+        <button class="btn-primary" onclick="copyOrder()">📋 Copiar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-overlay" id="authOverlay" style="display:none">
+    <div class="auth-card" id="authCard">
+      <div class="auth-logo">
+        <div class="auth-icon">🐍</div>
+        <div class="auth-title">BLACK MAMBA</div>
+        <div class="auth-badge">🔒 ACESSO RESTRITO</div>
+      </div>
+      <p class="auth-desc">Introduz a palavra-passe ou chave de acesso da organização para entrar.</p>
+      
+      <form class="auth-form" id="authForm" onsubmit="handleAuthSubmit(event)">
+        <div class="auth-input-wrap">
+          <input type="password" id="authPasscodeInput" class="auth-input" placeholder="Palavra-passe..." autocomplete="current-password" autofocus />
+          <button type="button" class="auth-toggle-pwd" onclick="togglePasscodeVisibility()" title="Mostrar/Ocultar">👁️</button>
+        </div>
+        
+        <div class="auth-remember-row">
+          <label class="auth-remember-label">
+            <input type="checkbox" id="authRemember" checked />
+            <span>Lembrar este dispositivo</span>
+          </label>
+        </div>
+
+        <div class="auth-error" id="authError" style="display:none"></div>
+
+        <button type="submit" class="auth-submit-btn">
+          <span>🔓 Entrar no Sistema</span>
+        </button>
+      </form>
+
+      <div class="auth-footer-hint">
+        <span>💡 Chaves de acesso configuráveis em <code>app.js</code></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
