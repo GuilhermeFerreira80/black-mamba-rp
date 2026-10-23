@@ -71,27 +71,108 @@
         <!-- CATALOG PANEL -->
         <div id="panel-catalog">
           <div class="sidebar-section">
-            <h3 class="sidebar-title">Categoria</h3>
-            <div class="filter-group" id="categoryFilters">
-              <button class="filter-btn active" data-cat="all" onclick="filterCategory('all')">Tudo</button>
-              <button class="filter-btn" data-cat="bairro" onclick="filterCategory('bairro')">🏘️ Bairro</button>
-              <button class="filter-btn" data-cat="org" onclick="filterCategory('org')">⚔️ Org</button>
-              <button class="filter-btn" data-cat="acessorios" onclick="filterCategory('acessorios')">🔧 Acessórios</button>
-              <button class="filter-btn" data-cat="coletes" onclick="filterCategory('coletes')">🛡️ Coletes</button>
-              <button class="filter-btn" data-cat="bar" onclick="filterCategory('bar')">🍹 Bar</button>
-              <button class="filter-btn" data-cat="moto" onclick="filterCategory('moto')">🏍️ Motoclube</button>
-              <button class="filter-btn" data-cat="mesa" onclick="filterCategory('mesa')">⚗️ Mesa Química</button>
-            </div>
-          </div>
-          <div class="sidebar-section">
-            <h3 class="sidebar-title">Tipo</h3>
-            <div class="filter-group" id="typeFilters">
-              <button class="filter-btn active" data-type="all" onclick="filterType('all')">Todos</button>
-              <button class="filter-btn" data-type="Básica" onclick="filterType('Básica')">⚙️ Básica</button>
-              <button class="filter-btn" data-type="Avançada" onclick="filterType('Avançada')">🔬 Avançada</button>
-              <button class="filter-btn" data-type="Pistol" onclick="filterType('Pistol')">🔫 Pistola</button>
-              <button class="filter-btn" data-type="SMG" onclick="filterType('SMG')">💥 SMG</button>
-              <button class="filter-btn" data-type="Rifle" onclick="filterType('Rifle')">🎯 Rifle</button>
+            <h3 class="sidebar-title">📁 Categorias & Subtipos</h3>
+            <div class="cascade-tree" id="cascadeTree">
+              
+              <!-- TUDO -->
+              <div class="cascade-item" id="citem-all">
+                <div class="cascade-header active" onclick="selectCascadeCategory('all')">
+                  <div class="cascade-title-left">
+                    <span class="cascade-icon">🌐</span>
+                    <span class="cascade-name">Todos os Produtos</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BAIRRO -->
+              <div class="cascade-item" id="citem-bairro">
+                <div class="cascade-header" onclick="selectCascadeCategory('bairro')">
+                  <div class="cascade-title-left">
+                    <span class="cascade-icon">🏘️</span>
+                    <span class="cascade-name">Bairro (Black Mamba)</span>
+                  </div>
+                  <span class="cascade-arrow">▾</span>
+                </div>
+                <div class="cascade-sublist" id="csub-bairro">
+                  <button class="cascade-subbtn active" onclick="selectCascadeType('bairro', 'all', event)">Todos</button>
+                  <button class="cascade-subbtn" onclick="selectCascadeType('bairro', 'Básica', event)">⚙️ Básica</button>
+                  <button class="cascade-subbtn" onclick="selectCascadeType('bairro', 'Avançada', event)">🔬 Avançada</button>
+                </div>
+              </div>
+
+              <!-- ORG -->
+              <div class="cascade-item" id="citem-org">
+                <div class="cascade-header" onclick="selectCascadeCategory('org')">
+                  <div class="cascade-title-left">
+                    <span class="cascade-icon">⚔️</span>
+                    <span class="cascade-name">Armas — Org</span>
+                  </div>
+                  <span class="cascade-arrow">▾</span>
+                </div>
+                <div class="cascade-sublist" id="csub-org">
+                  <button class="cascade-subbtn active" onclick="selectCascadeType('org', 'all', event)">Todos</button>
+                  <button class="cascade-subbtn" onclick="selectCascadeType('org', 'Básica', event)">⚙️ Básica</button>
+                  <button class="cascade-subbtn" onclick="selectCascadeType('org', 'Avançada', event)">🔬 Avançada</button>
+                </div>
+              </div>
+
+              <!-- ACESSÓRIOS -->
+              <div class="cascade-item" id="citem-acessorios">
+                <div class="cascade-header" onclick="selectCascadeCategory('acessorios')">
+                  <div class="cascade-title-left">
+                    <span class="cascade-icon">🔧</span>
+                    <span class="cascade-name">Acessórios</span>
+                  </div>
+                  <span class="cascade-arrow">▾</span>
+                </div>
+                <div class="cascade-sublist" id="csub-acessorios">
+                  <button class="cascade-subbtn active" onclick="selectCascadeType('acessorios', 'all', event)">Todos</button>
+                  <button class="cascade-subbtn" onclick="selectCascadeType('acessorios', 'Pistol', event)">🔫 Pistola</button>
+                  <button class="cascade-subbtn" onclick="selectCascadeType('acessorios', 'SMG', event)">💥 SMG</button>
+                  <button class="cascade-subbtn" onclick="selectCascadeType('acessorios', 'Rifle', event)">🎯 Rifle</button>
+                </div>
+              </div>
+
+              <!-- COLETES -->
+              <div class="cascade-item" id="citem-coletes">
+                <div class="cascade-header" onclick="selectCascadeCategory('coletes')">
+                  <div class="cascade-title-left">
+                    <span class="cascade-icon">🛡️</span>
+                    <span class="cascade-name">Coletes</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WU-CHANG (BAR) -->
+              <div class="cascade-item" id="citem-bar">
+                <div class="cascade-header" onclick="selectCascadeCategory('bar')">
+                  <div class="cascade-title-left">
+                    <span class="cascade-icon">🍸</span>
+                    <span class="cascade-name">Wu-Chang (Bar)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- THE LOST MC -->
+              <div class="cascade-item" id="citem-moto">
+                <div class="cascade-header" onclick="selectCascadeCategory('moto')">
+                  <div class="cascade-title-left">
+                    <span class="cascade-icon">🏍️</span>
+                    <span class="cascade-name">The Lost MC</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MESA QUÍMICA -->
+              <div class="cascade-item" id="citem-mesa">
+                <div class="cascade-header" onclick="selectCascadeCategory('mesa')">
+                  <div class="cascade-title-left">
+                    <span class="cascade-icon">⚗️</span>
+                    <span class="cascade-name">Mesa Química</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
           <div class="sidebar-section sidebar-info">
@@ -140,8 +221,13 @@
           <span>🏦</span> Itens de Loot
           <span class="heist-hint">Define a quantidade de cada item apanhado</span>
         </div>
-        <div class="heist-search-wrap">
-          <input class="heist-search" id="heistSearch" type="text" placeholder="🔍 Filtrar itens..." oninput="filterHeistItems()" />
+        <div class="heist-toolbar">
+          <div class="heist-search-wrap">
+            <input class="heist-search" id="heistSearch" type="text" placeholder="🔍 Filtrar itens..." oninput="filterHeistItems()" />
+          </div>
+          <button class="btn-heist-cfg" onclick="openHeistConfigModal()" title="Configurar Preços">
+            ⚙️ Preços Loot
+          </button>
         </div>
         <div class="heist-items-grid" id="heistItemsGrid"></div>
       </div>
@@ -167,7 +253,7 @@
           </div>
           <div class="heist-preset-chips">
             <button type="button" class="heist-chip active" id="chip-0" onclick="setHeistDiscount(0)">0%</button>
-            <button type="button" class="heist-chip" id="chip-10" onclick="setHeistDiscount(10)">10% Bar (Barragem)</button>
+            <button type="button" class="heist-chip" id="chip-10" onclick="setHeistDiscount(10)">10% Wu-Chang</button>
             <button type="button" class="heist-chip" id="chip-15" onclick="setHeistDiscount(15)">15% Lavagem</button>
           </div>
 
@@ -217,9 +303,19 @@
 
   <!-- ===== PÁGINA PARCERIAS & TABELAS ===== -->
   <div class="app-page" id="page-parcerias" style="display:none">
-    <div class="parcerias-layout" id="parceriasContainer"></div>
-  </div>
-
+    <div class="parcerias-layout">
+      <div class="parcerias-header-bar">
+        <div class="parcerias-header-info">
+          <h1>🤝 Parcerias & Precários Oficiais</h1>
+          <p>Tabelas de acordos, taxas de serviço e preços negociados com Wu-Chang, The Lost MC e Cartel Madrazo.</p>
+        </div>
+        <div class="parcerias-header-actions">
+          <button class="btn-secondary" onclick="resetParceriasPrices()">↺ Repor Padrão</button>
+          <button class="btn-primary" onclick="openParceriasConfigModal()">⚙️ Configurar Preços</button>
+        </div>
+      </div>
+      <div id="parceriasContainer"></div>
+    </div>
   </div>
 
   <!-- Cart overlay + panel -->
@@ -238,12 +334,49 @@
       <div id="cartItems"></div>
     </div>
     <div class="cart-footer" id="cartFooter" style="display:none">
+      
+      <!-- RESUMO DE PRODUÇÃO & CUSTOS -->
+      <div class="cart-summary-section">
+        <h3 class="materials-title">📊 Resumo de Fabrico & Custos</h3>
+        <div class="cart-kpi-grid">
+          <div class="cart-kpi-card money">
+            <span class="kpi-icon">💵</span>
+            <div class="kpi-content">
+              <span class="kpi-label">Custo Total (Dinheiro)</span>
+              <span class="kpi-val" id="cartTotalMoney">0 €</span>
+            </div>
+          </div>
+          <div class="cart-kpi-card pecas-basicas">
+            <span class="kpi-icon">⚙️</span>
+            <div class="kpi-content">
+              <span class="kpi-label">Peças Básicas</span>
+              <span class="kpi-val" id="cartTotalPecasBasicas">0 un</span>
+            </div>
+          </div>
+          <div class="cart-kpi-card pecas-avancadas">
+            <span class="kpi-icon">🔬</span>
+            <div class="kpi-content">
+              <span class="kpi-label">Peças Avançadas</span>
+              <span class="kpi-val" id="cartTotalPecasAvancadas">0 un</span>
+            </div>
+          </div>
+          <div class="cart-kpi-card bps">
+            <span class="kpi-icon">📜</span>
+            <div class="kpi-content">
+              <span class="kpi-label">Blueprints (BPs)</span>
+              <span class="kpi-val" id="cartTotalBPs">0 BPs</span>
+            </div>
+          </div>
+        </div>
+        <div id="cartBPsBreakdown" class="bps-breakdown-tags"></div>
+      </div>
+
       <div class="materials-section">
-        <h3 class="materials-title">📦 Materiais Necessários</h3>
+        <h3 class="materials-title">📦 Materiais de Montagem</h3>
         <div class="materials-grid" id="materialsGrid"></div>
       </div>
       <div class="materials-section" id="rawMatSection">
-        <h3 class="materials-title">⛏️ Matérias-Primas</h3>
+        <h3 class="materials-title">⛏️ Matérias-Primas Totais</h3>
         <div class="materials-grid" id="rawMaterialsGrid"></div>
       </div>
       <div class="cart-actions">
@@ -255,6 +388,7 @@
 
   <div class="toast" id="toast"></div>
 
+  <!-- Modal Resumo Encomenda -->
   <div class="modal-overlay" id="modalOverlay" style="display:none" onclick="closeModal()">
     <div class="modal" id="exportModal" onclick="event.stopPropagation()">
       <div class="modal-header">
@@ -265,6 +399,52 @@
       <div class="modal-footer">
         <button class="btn-secondary" onclick="closeModal()">Fechar</button>
         <button class="btn-primary" onclick="copyOrder()">📋 Copiar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Config Preços Barragens -->
+  <div class="modal-overlay" id="heistConfigModalOverlay" style="display:none" onclick="closeHeistConfigModal()">
+    <div class="modal" style="max-width:580px" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>⚙️ Configurar Preços de Barragem</h2>
+        <button class="cart-close" onclick="closeHeistConfigModal()">✕</button>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:12px">Altera o valor unitário pago por cada item saqueado nas barragens.</p>
+      <div class="cfg-search-wrap" style="margin-bottom:12px">
+        <input class="cfg-search" id="heistCfgSearch" type="text" placeholder="🔍 Procurar item..." oninput="renderHeistConfigTable()" />
+      </div>
+      <div class="cfg-modal-content">
+        <table class="cfg-modal-table">
+          <thead>
+            <tr>
+              <th>Item de Loot</th>
+              <th style="text-align:right">Preço Original</th>
+              <th style="text-align:right">Novo Preço (€)</th>
+            </tr>
+          </thead>
+          <tbody id="heistConfigTableBody"></tbody>
+        </table>
+      </div>
+      <div class="modal-footer" style="margin-top:16px">
+        <button class="btn-secondary" onclick="resetHeistPrices()">↺ Repor Originais</button>
+        <button class="btn-primary" onclick="saveHeistPrices()">💾 Guardar Preços</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Config Preços Parcerias -->
+  <div class="modal-overlay" id="parceriasConfigModalOverlay" style="display:none" onclick="closeParceriasConfigModal()">
+    <div class="modal" style="max-width:620px" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>⚙️ Configurar Preços de Parcerias</h2>
+        <button class="cart-close" onclick="closeParceriasConfigModal()">✕</button>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:12px">Ajusta percentagens e valores negociados com Wu-Chang, The Lost MC e Cartel Madrazo.</p>
+      <div class="cfg-modal-content" id="parceriasConfigBody"></div>
+      <div class="modal-footer" style="margin-top:16px">
+        <button class="btn-secondary" onclick="resetParceriasPrices()">↺ Repor Originais</button>
+        <button class="btn-primary" onclick="saveParceriasPrices()">💾 Guardar Preços</button>
       </div>
     </div>
   </div>
