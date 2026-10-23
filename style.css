@@ -658,59 +658,65 @@ body {
 /* ===== CONFIG PANEL ===== */
 .cfg-header { margin-bottom: 12px; }
 .cfg-desc { font-size: 11px; color: var(--text3); line-height: 1.6; margin-bottom: 10px; }
-.cfg-actions-top { display: flex; gap: 6px; }
-.cfg-btn-reset, .cfg-btn-save {
-  flex: 1;
-  padding: 7px 8px;
-  border-radius: 7px;
+.cfg-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.cfg-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 6px;
+  border-radius: 8px;
   font-family: 'Outfit', sans-serif;
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
-  border: 1px solid;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
   white-space: nowrap;
+  outline: none;
+  box-sizing: border-box;
+  text-align: center;
+  user-select: none;
 }
-.cfg-btn-reset {
-  background: rgba(239,68,68,0.1);
-  border-color: rgba(239,68,68,0.25);
-  color: #ef4444;
-}
-.cfg-btn-reset:hover { background: rgba(239,68,68,0.2); }
 .cfg-btn-save {
-  background: rgba(16,185,129,0.12);
-  border-color: rgba(16,185,129,0.3);
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.35);
   color: #10b981;
 }
-.cfg-btn-save:hover { background: rgba(16,185,129,0.22); }
-
-.cfg-actions-files {
-  display: flex;
-  gap: 6px;
-  margin-top: 6px;
+.cfg-btn-save:hover {
+  background: rgba(16, 185, 129, 0.24);
+  border-color: #10b981;
+  color: #34d399;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+.cfg-btn-reset {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.28);
+  color: #ef4444;
+}
+.cfg-btn-reset:hover {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: #ef4444;
+  color: #f87171;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
 }
 .cfg-btn-file {
-  flex: 1;
-  padding: 6px 8px;
-  border-radius: 7px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 10.5px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.35);
   color: #c4b5fd;
-  text-align: center;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .cfg-btn-file:hover {
-  background: rgba(139, 92, 246, 0.22);
-  border-color: rgba(139, 92, 246, 0.5);
-  color: #fff;
+  background: rgba(139, 92, 246, 0.26);
+  border-color: rgba(139, 92, 246, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.25);
 }
 
 .cfg-search-wrap { margin-bottom: 12px; }

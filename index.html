@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2.3" />
 </head>
 <body>
   <div class="particles" id="particles"></div>
@@ -188,16 +188,12 @@
         <div id="panel-config" style="display:none">
           <div class="cfg-header">
             <p class="cfg-desc">Edita preços e materiais por unidade. As alterações aplicam-se imediatamente aos cards e ao carrinho.</p>
-            <div class="cfg-actions-top">
-              <button class="cfg-btn-reset" onclick="resetAllConfig()">↺ Repor</button>
-              <button class="cfg-btn-save" onclick="saveConfigToStorage()">💾 Guardar</button>
-            </div>
-            <div class="cfg-actions-files">
-              <button class="cfg-btn-file" onclick="exportProdutosJson()" title="Descarregar produtos.json com as alterações">📥 Exportar JSON</button>
-              <label class="cfg-btn-file" title="Carregar um produtos.json do computador" style="cursor:pointer;margin:0;">
-                📤 Importar JSON
-                <input type="file" id="importJsonInput" accept=".json" style="display:none" onchange="importProdutosJson(event)" />
-              </label>
+            <div class="cfg-actions-grid">
+              <button type="button" class="cfg-btn cfg-btn-save" onclick="saveConfigToStorage()">💾 Guardar</button>
+              <button type="button" class="cfg-btn cfg-btn-reset" onclick="resetAllConfig()">↺ Repor</button>
+              <button type="button" class="cfg-btn cfg-btn-file" onclick="exportProdutosJson()" title="Descarregar produtos.json com as alterações">📥 Exportar JSON</button>
+              <button type="button" class="cfg-btn cfg-btn-file" onclick="document.getElementById('importJsonInput').click()" title="Carregar produtos.json do computador">📤 Importar JSON</button>
+              <input type="file" id="importJsonInput" accept=".json" style="display:none" onchange="importProdutosJson(event)" />
             </div>
           </div>
           <div class="cfg-search-wrap">
@@ -505,6 +501,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2.3"></script>
 </body>
 </html>
