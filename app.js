@@ -152,19 +152,21 @@ function getProduct3Prices(p) {
   let blip = 0;
   let parc = 0;
   let civ = 0;
+  let semPecas = null; // Apenas para cat 'bairro'
 
   if (eff.cat === 'acessorios' || eff.cat === 'coletes') {
     blip = eff.precoBlip || 0;
-    parc = (eff.precoParc !== undefined && eff.precoParc !== null) ? eff.precoParc : (eff.precoBlip || 0);
+    parc = (eff.precoParc != null) ? eff.precoParc : blip;
     civ = eff.precoCivil || 0;
   } else if (eff.cat === 'bairro') {
     blip = eff.precoBlip || 0;
-    parc = (eff.precoParc !== undefined && eff.precoParc !== null) ? eff.precoParc : (eff.precoBlip || 0);
+    parc = (eff.precoParc != null) ? eff.precoParc : blip;
     civ = eff.precoCivil || 0;
+    if (eff.precoSemPecas) semPecas = eff.precoSemPecas;
   } else if (eff.cat === 'org') {
     blip = eff.precoBlip || eff.precoOrg || 0;
-    parc = eff.precoParc || eff.precoOrg || 0;
-    civ = eff.precoCivil || eff.precoOrg || 0;
+    parc = (eff.precoParc != null) ? eff.precoParc : (eff.precoOrg || 0);
+    civ = (eff.precoCivil != null) ? eff.precoCivil : (eff.precoOrg || 0);
   } else if (eff.cat === 'mesa') {
     if (eff.id && eff.id.includes('parc')) {
       parc = eff.precoMesa || 0;
@@ -178,22 +180,24 @@ function getProduct3Prices(p) {
   } else {
     // bar (Wu-Chang), moto (Lost MC), etc.
     blip = eff.precoBlip || 0;
-    parc = (eff.precoParc !== undefined && eff.precoParc !== null) ? eff.precoParc : (eff.precoBlip || 0);
-    civ = eff.precoCivil || eff.precoBlip || 0;
+    parc = (eff.precoParc != null) ? eff.precoParc : blip;
+    civ = eff.precoCivil || blip || 0;
   }
 
-  return { blip, parc, civ, eff };
+  return { blip, parc, civ, semPecas, eff };
 }
 
 function buildPriceRowsHTML(eff) {
-  const { blip, parc, civ } = getProduct3Prices(eff);
+  const { blip, parc, civ, semPecas } = getProduct3Prices(eff);
   if (eff.cat === 'org') {
     return `<div class="card-price-row"><span class="card-price-label">Preço Org</span><span class="card-price-val">${formatPrice(eff.precoOrg)}</span></div>`;
   }
+  const semRow = semPecas ? `<div class="card-price-row price-sem"><span class="card-price-label">⚠️ S/Peças</span><span class="card-price-val">${formatPrice(semPecas)}</span></div>` : '';
   return `
     <div class="card-price-row price-blip"><span class="card-price-label">🔵 Blip</span><span class="card-price-val">${formatPrice(blip)}</span></div>
     <div class="card-price-row price-parc"><span class="card-price-label">🤝 Parceria</span><span class="card-price-val">${formatPrice(parc)}</span></div>
     <div class="card-price-row price-civ"><span class="card-price-label">👤 Civil</span><span class="card-price-val">${formatPrice(civ)}</span></div>
+    ${semRow}
   `;
 }
 
@@ -423,7 +427,7 @@ function renderCartItems() {
   itemsDiv.innerHTML = keys.map(id => {
     const item = cart[id];
     const p = item.product;
-    const { blip, parc, civ } = getProduct3Prices(p);
+    const { blip, parc, civ, semPecas } = getProduct3Prices(p);
     const totalBlip = blip * item.qty;
     const totalParc = parc * item.qty;
     const totalCiv = civ * item.qty;
@@ -436,24 +440,33 @@ function renderCartItems() {
       : p.cat === 'moto' ? 'The Lost MC'
       : 'Mesa Química';
 
+    // Gera linhas de preço dinamicamente
+    const priceRows = [];
+    priceRows.push(`<div class="cip-row blip"><span class="cip-label">🔵 Blip</span><div class="cip-vals"><span class="cip-total">${formatPrice(totalBlip)}</span><span class="cip-unit">${formatPrice(blip)}/un</span></div></div>`);
+    priceRows.push(`<div class="cip-row parc"><span class="cip-label">🤝 Parceria</span><div class="cip-vals"><span class="cip-total">${formatPrice(totalParc)}</span><span class="cip-unit">${formatPrice(parc)}/un</span></div></div>`);
+    priceRows.push(`<div class="cip-row civ"><span class="cip-label">👤 Civil</span><div class="cip-vals"><span class="cip-total">${formatPrice(totalCiv)}</span><span class="cip-unit">${formatPrice(civ)}/un</span></div></div>`);
+    if (semPecas) {
+      priceRows.push(`<div class="cip-row sem"><span class="cip-label">⚠️ S/Peças</span><div class="cip-vals"><span class="cip-total">${formatPrice(semPecas * item.qty)}</span><span class="cip-unit">${formatPrice(semPecas)}/un</span></div></div>`);
+    }
+
     return `
       <div class="cart-item" id="cartitem-${id}">
-        <div class="cart-item-emoji">${getEmoji(p.cat, p.tipoBP)}</div>
-        <div class="cart-item-info">
-          <div class="cart-item-name">${p.name}</div>
-          <div class="cart-item-sub">${catName}</div>
-          <div class="cart-item-prices">
-            <span class="cart-price-pill blip" title="Preço Blip"><span>🔵 Blip:</span> <strong>${formatPrice(totalBlip)}</strong> <small>(${formatPrice(blip)}/un)</small></span>
-            <span class="cart-price-pill parc" title="Preço Parceria"><span>🤝 Parceria:</span> <strong>${formatPrice(totalParc)}</strong> <small>(${formatPrice(parc)}/un)</small></span>
-            <span class="cart-price-pill civ" title="Preço Civil"><span>👤 Civil:</span> <strong>${formatPrice(totalCiv)}</strong> <small>(${formatPrice(civ)}/un)</small></span>
+        <div class="ci-top">
+          <div class="ci-identity">
+            <span class="ci-emoji">${getEmoji(p.cat, p.tipoBP)}</span>
+            <div class="ci-meta">
+              <div class="ci-name">${p.name}</div>
+              <div class="ci-cat">${catName}</div>
+            </div>
+          </div>
+          <div class="ci-controls">
+            <button class="cart-qty-btn" onclick="cartChangeQty('${id}', -1)">−</button>
+            <span class="cart-item-qty-val">${item.qty}</span>
+            <button class="cart-qty-btn" onclick="cartChangeQty('${id}', 1)">+</button>
+            <button class="cart-remove-btn" onclick="removeFromCart('${id}')" title="Remover">✕</button>
           </div>
         </div>
-        <div class="cart-item-qty">
-          <button class="cart-qty-btn" onclick="cartChangeQty('${id}', -1)">−</button>
-          <span class="cart-item-qty-val">${item.qty}</span>
-          <button class="cart-qty-btn" onclick="cartChangeQty('${id}', 1)">+</button>
-        </div>
-        <button class="cart-remove-btn" onclick="removeFromCart('${id}')" title="Remover">🗑</button>
+        <div class="ci-prices">${priceRows.join('')}</div>
       </div>
     `;
   }).join('');
@@ -493,6 +506,8 @@ function updateCartMaterials() {
   let totalBlip = 0;
   let totalParc = 0;
   let totalCivil = 0;
+  let totalSemPecas = 0;
+  let hasSemPecas = false;
   let totalPecasBasicas = 0;
   let totalPecasAvancadas = 0;
   let totalBPs = 0;
@@ -500,12 +515,16 @@ function updateCartMaterials() {
   const totals = {};
 
   Object.values(cart).forEach(({ product: p, qty }) => {
-    const { blip, parc, civ, eff } = getProduct3Prices(p);
+    const { blip, parc, civ, semPecas, eff } = getProduct3Prices(p);
 
-    // 3 Preços Totais
+    // Preços Totais
     totalBlip += blip * qty;
     totalParc += parc * qty;
     totalCivil += civ * qty;
+    if (semPecas) {
+      totalSemPecas += semPecas * qty;
+      hasSemPecas = true;
+    }
 
     // Peças de Armas
     if (p.tipoPeca === 'Básica' && p.pecasPerUnit) {
@@ -528,7 +547,7 @@ function updateCartMaterials() {
     });
   });
 
-  // Atualiza cartões dos 3 Preços no Carrinho
+  // Atualiza cartões dos Preços no Carrinho
   const blipEl = document.getElementById('cartTotalBlip');
   if (blipEl) blipEl.textContent = formatPrice(totalBlip);
 
@@ -537,6 +556,17 @@ function updateCartMaterials() {
 
   const civEl = document.getElementById('cartTotalCivil');
   if (civEl) civEl.textContent = formatPrice(totalCivil);
+
+  const semBox = document.getElementById('cartPriceBoxSem');
+  const semEl = document.getElementById('cartTotalSemPecas');
+  if (semBox && semEl) {
+    if (hasSemPecas) {
+      semBox.style.display = 'flex';
+      semEl.textContent = formatPrice(totalSemPecas);
+    } else {
+      semBox.style.display = 'none';
+    }
+  }
 
   const moneyEl = document.getElementById('cartTotalMoney');
   if (moneyEl) moneyEl.textContent = formatPrice(totalBlip);
@@ -603,17 +633,25 @@ function exportOrder() {
   let totalBlip = 0;
   let totalParc = 0;
   let totalCivil = 0;
+  let totalSemPecas = 0;
+  let hasSemPecas = false;
   let totalPecasBasicas = 0;
   let totalPecasAvancadas = 0;
   let totalBPs = 0;
   const bpsMap = {};
 
   Object.values(cart).forEach(({ product: p, qty }) => {
-    const { blip, parc, civ } = getProduct3Prices(p);
+    const { blip, parc, civ, semPecas } = getProduct3Prices(p);
     totalBlip += blip * qty;
     totalParc += parc * qty;
     totalCivil += civ * qty;
-    lines.push(`  • ${p.name} × ${qty}  [Blip: ${formatPrice(blip * qty)} | Parc: ${formatPrice(parc * qty)} | Civil: ${formatPrice(civ * qty)}]`);
+    let semPecasStr = '';
+    if (semPecas) {
+      totalSemPecas += semPecas * qty;
+      hasSemPecas = true;
+      semPecasStr = ` | S/Peças: ${formatPrice(semPecas * qty)}`;
+    }
+    lines.push(`  • ${p.name} × ${qty}  [Blip: ${formatPrice(blip * qty)} | Parc: ${formatPrice(parc * qty)} | Civil: ${formatPrice(civ * qty)}${semPecasStr}]`);
 
     if (p.tipoPeca === 'Básica' && p.pecasPerUnit) totalPecasBasicas += p.pecasPerUnit * qty;
     if (p.tipoPeca === 'Avançada' && p.pecasPerUnit) totalPecasAvancadas += p.pecasPerUnit * qty;
@@ -627,10 +665,13 @@ function exportOrder() {
   });
 
   lines.push('');
-  lines.push('💰 RESUMO FINANCEIRO (3 PREÇOS):');
+  lines.push('💰 RESUMO FINANCEIRO:');
   lines.push(`  • 🔵 Total Preço Blip:     ${formatPrice(totalBlip)}`);
   lines.push(`  • 🤝 Total Preço Parceria: ${formatPrice(totalParc)}`);
   lines.push(`  • 👤 Total Preço Civil:    ${formatPrice(totalCivil)}`);
+  if (hasSemPecas) {
+    lines.push(`  • ⚠️ Total Sem Peças:      ${formatPrice(totalSemPecas)}`);
+  }
 
   if (totalPecasBasicas > 0 || totalPecasAvancadas > 0) {
     lines.push('');
