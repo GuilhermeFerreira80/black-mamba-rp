@@ -359,7 +359,6 @@
     "precoParc": 1500,
     "precoCivil": 1850,
     "mats": {
-      "Alumínio": 2,
       "Aço": 2
     },
     "compatibilidade": "Fajuta / Revolver"
@@ -377,7 +376,6 @@
     "precoParc": 2500,
     "precoCivil": 3750,
     "mats": {
-      "Alumínio": 3,
       "Plástico": 3
     },
     "compatibilidade": "Vintage / Fajuta / AP / Tec-9 / .50"
@@ -391,9 +389,9 @@
     "tipoBP": "Pistol",
     "pecasPerUnit": 0,
     "bpPerUnit": 0,
-    "precoBlip": 1000,
+    "precoBlip": 500,
     "precoParc": 1000,
-    "precoCivil": 2000,
+    "precoCivil": 1500,
     "mats": {
       "Restos": 1
     },
@@ -408,11 +406,11 @@
     "tipoBP": "Pistol",
     "pecasPerUnit": 0,
     "bpPerUnit": 0,
-    "precoBlip": 1000,
+    "precoBlip": 500,
     "precoParc": 1000,
-    "precoCivil": 2000,
+    "precoCivil": 1500,
     "mats": {
-      "Restos": 1
+      "Restos": 2
     },
     "compatibilidade": "Fajuta"
   },
@@ -429,7 +427,6 @@
     "precoParc": 2500,
     "precoCivil": 3750,
     "mats": {
-      "Alumínio": 3,
       "Plástico": 3
     },
     "compatibilidade": "Vintage / Fajuta / AP / Tec-9 / .50"
@@ -447,7 +444,6 @@
     "precoParc": 6000,
     "precoCivil": 8500,
     "mats": {
-      "Alumínio": 7,
       "Plástico": 7
     },
     "compatibilidade": "Uzi / PDW / Thompson / P90"
@@ -461,11 +457,11 @@
     "tipoBP": "SMG",
     "pecasPerUnit": 0,
     "bpPerUnit": 0,
-    "precoBlip": 1500,
+    "precoBlip": 750,
     "precoParc": 1000,
-    "precoCivil": 2500,
+    "precoCivil": 1750,
     "mats": {
-      "Restos": 1
+      "Restos": 3
     },
     "compatibilidade": "Uzi / PDW / P90"
   },
@@ -478,11 +474,11 @@
     "tipoBP": "SMG",
     "pecasPerUnit": 0,
     "bpPerUnit": 0,
-    "precoBlip": 1500,
+    "precoBlip": 750,
     "precoParc": 1000,
-    "precoCivil": 2500,
+    "precoCivil": 1750,
     "mats": {
-      "Restos": 1
+      "Restos": 3
     },
     "compatibilidade": "Uzi / PDW / P90"
   },
@@ -499,7 +495,6 @@
     "precoParc": 4000,
     "precoCivil": 5500,
     "mats": {
-      "Alumínio": 5,
       "Plástico": 5
     },
     "compatibilidade": "UZI / P90"
@@ -517,7 +512,6 @@
     "precoParc": 7500,
     "precoCivil": 11000,
     "mats": {
-      "Alumínio": 10,
       "Plástico": 10
     },
     "compatibilidade": "Tec-9 / Draco / PDW"
@@ -621,11 +615,11 @@
     "tipoBP": "Rifle",
     "pecasPerUnit": 0,
     "bpPerUnit": 0,
-    "precoBlip": 1500,
+    "precoBlip": 750,
     "precoParc": 1000,
-    "precoCivil": 2500,
+    "precoCivil": 1750,
     "mats": {
-      "Restos": 1
+      "Restos": 3
     },
     "compatibilidade": "AK / Famas / TAR"
   },
@@ -638,11 +632,11 @@
     "tipoBP": "Rifle",
     "pecasPerUnit": 0,
     "bpPerUnit": 0,
-    "precoBlip": 1500,
+    "precoBlip": 750,
     "precoParc": 1000,
-    "precoCivil": 2500,
+    "precoCivil": 1750,
     "mats": {
-      "Restos": 1
+      "Restos": 3
     },
     "compatibilidade": "AK / Famas / TAR"
   },
@@ -656,8 +650,8 @@
     "pecasPerUnit": 0,
     "bpPerUnit": 0,
     "precoBlip": 5500,
-    "precoParc": 6500,
-    "precoCivil": 12500,
+    "precoParc": 12000,
+    "precoCivil": 12000,
     "mats": {
       "Pele": 3,
       "Fibra": 5,
