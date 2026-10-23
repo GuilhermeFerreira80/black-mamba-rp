@@ -1763,6 +1763,115 @@ body {
   font-weight: 600;
 }
 
+/* 3 PREÇOS TOTAIS NO CARRINHO */
+.cart-prices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+.cart-price-box {
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cart-price-box.blip {
+  border-color: rgba(59, 130, 246, 0.35);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(59, 130, 246, 0.03));
+}
+.cart-price-box.parc {
+  border-color: rgba(245, 158, 11, 0.4);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(245, 158, 11, 0.03));
+}
+.cart-price-box.civ {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.03));
+}
+.cpb-top {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.cart-price-box.blip .cpb-top { color: #60a5fa; }
+.cart-price-box.parc .cpb-top { color: #fbbf24; }
+.cart-price-box.civ .cpb-top { color: #34d399; }
+.cpb-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.cpb-dot.blip { background: #3b82f6; box-shadow: 0 0 6px rgba(59, 130, 246, 0.6); }
+.cpb-dot.parc { background: #f59e0b; box-shadow: 0 0 6px rgba(245, 158, 11, 0.6); }
+.cpb-dot.civ { background: #10b981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.6); }
+
+.cpb-val {
+  font-size: 14.5px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  white-space: nowrap;
+}
+.cart-price-box.blip .cpb-val { color: #93c5fd; }
+.cart-price-box.parc .cpb-val { color: #fde047; }
+.cart-price-box.civ .cpb-val { color: #6ee7b7; }
+
+/* 3 PREÇOS NOS ITENS INDIVIDUAIS DO CARRINHO */
+.cart-item-prices {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+}
+.cart-price-pill {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.cart-price-pill strong {
+  font-weight: 700;
+}
+.cart-price-pill small {
+  opacity: 0.75;
+  font-size: 9px;
+}
+.cart-price-pill.blip {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+}
+.cart-price-pill.parc {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fde047;
+}
+.cart-price-pill.civ {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+  color: #6ee7b7;
+}
+
+/* CORES DOS PREÇOS NOS CARDS DE PRODUTO */
+.card-price-row.price-blip .card-price-label { color: #60a5fa; }
+.card-price-row.price-blip .card-price-val { color: #93c5fd; }
+.card-price-row.price-parc .card-price-label { color: #fbbf24; }
+.card-price-row.price-parc .card-price-val { color: #fde047; }
+.card-price-row.price-civ .card-price-label { color: #34d399; }
+.card-price-row.price-civ .card-price-val { color: #6ee7b7; }
+
 /* ===== TOOLBAR BARRAGENS ===== */
 .heist-toolbar {
   display: flex;

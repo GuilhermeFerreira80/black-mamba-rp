@@ -335,17 +335,27 @@
     </div>
     <div class="cart-footer" id="cartFooter" style="display:none">
       
-      <!-- RESUMO DE PRODUÇÃO & CUSTOS -->
+      <!-- RESUMO DE PRODUÇÃO & CUSTOS (3 PREÇOS) -->
       <div class="cart-summary-section">
-        <h3 class="materials-title">📊 Resumo de Fabrico & Custos</h3>
-        <div class="cart-kpi-grid">
-          <div class="cart-kpi-card money">
-            <span class="kpi-icon">💵</span>
-            <div class="kpi-content">
-              <span class="kpi-label">Custo Total (Dinheiro)</span>
-              <span class="kpi-val" id="cartTotalMoney">0 €</span>
-            </div>
+        <h3 class="materials-title">📊 Resumo Financeiro & Fabrico</h3>
+        
+        <!-- 3 PREÇOS TOTAIS -->
+        <div class="cart-prices-grid">
+          <div class="cart-price-box blip">
+            <div class="cpb-top"><span class="cpb-dot blip"></span> Preço Blip</div>
+            <div class="cpb-val" id="cartTotalBlip">0 €</div>
           </div>
+          <div class="cart-price-box parc">
+            <div class="cpb-top"><span class="cpb-dot parc"></span> Preço Parceria</div>
+            <div class="cpb-val" id="cartTotalParc">0 €</div>
+          </div>
+          <div class="cart-price-box civ">
+            <div class="cpb-top"><span class="cpb-dot civ"></span> Preço Civil</div>
+            <div class="cpb-val" id="cartTotalCivil">0 €</div>
+          </div>
+        </div>
+
+        <div class="cart-kpi-grid" style="margin-top:10px">
           <div class="cart-kpi-card pecas-basicas">
             <span class="kpi-icon">⚙️</span>
             <div class="kpi-content">

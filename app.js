@@ -138,6 +138,65 @@ function formatPrice(val) {
   return val.toLocaleString('pt-PT') + ' €';
 }
 
+// ========== 3 PREÇOS & CONFIG EFFECTIVE HELPERS ==========
+function getEffective(p) {
+  const ov = configOverrides[p.id] || {};
+  const prices = { ...p, ...(ov.prices || {}) };
+  const mats = { ...(p.mats || {}), ...(ov.mats || {}) };
+  Object.keys(ov.mats || {}).forEach(k => { if (ov.mats[k] === 0) delete mats[k]; });
+  return { ...prices, mats };
+}
+
+function getProduct3Prices(p) {
+  const eff = getEffective(p);
+  let blip = 0;
+  let parc = 0;
+  let civ = 0;
+
+  if (eff.cat === 'acessorios' || eff.cat === 'coletes') {
+    blip = eff.precoBlip || 0;
+    parc = (eff.precoParc !== undefined && eff.precoParc !== null) ? eff.precoParc : (eff.precoBlip || 0);
+    civ = eff.precoCivil || 0;
+  } else if (eff.cat === 'bairro') {
+    blip = eff.precoBlip || 0;
+    parc = (eff.precoParc !== undefined && eff.precoParc !== null) ? eff.precoParc : (eff.precoBlip || 0);
+    civ = eff.precoCivil || 0;
+  } else if (eff.cat === 'org') {
+    blip = eff.precoBlip || eff.precoOrg || 0;
+    parc = eff.precoParc || eff.precoOrg || 0;
+    civ = eff.precoCivil || eff.precoOrg || 0;
+  } else if (eff.cat === 'mesa') {
+    if (eff.id && eff.id.includes('parc')) {
+      parc = eff.precoMesa || 0;
+      blip = eff.precoBlip || eff.precoMesa || 0;
+      civ = eff.precoCivil || (eff.id.includes('sem') ? 60000 : 25000);
+    } else {
+      civ = eff.precoMesa || 0;
+      parc = eff.precoParc || (eff.id && eff.id.includes('sem') ? 50000 : 15000);
+      blip = eff.precoBlip || parc;
+    }
+  } else {
+    // bar (Wu-Chang), moto (Lost MC), etc.
+    blip = eff.precoBlip || 0;
+    parc = (eff.precoParc !== undefined && eff.precoParc !== null) ? eff.precoParc : (eff.precoBlip || 0);
+    civ = eff.precoCivil || eff.precoBlip || 0;
+  }
+
+  return { blip, parc, civ, eff };
+}
+
+function buildPriceRowsHTML(eff) {
+  const { blip, parc, civ } = getProduct3Prices(eff);
+  if (eff.cat === 'org') {
+    return `<div class="card-price-row"><span class="card-price-label">Preço Org</span><span class="card-price-val">${formatPrice(eff.precoOrg)}</span></div>`;
+  }
+  return `
+    <div class="card-price-row price-blip"><span class="card-price-label">🔵 Blip</span><span class="card-price-val">${formatPrice(blip)}</span></div>
+    <div class="card-price-row price-parc"><span class="card-price-label">🤝 Parceria</span><span class="card-price-val">${formatPrice(parc)}</span></div>
+    <div class="card-price-row price-civ"><span class="card-price-label">👤 Civil</span><span class="card-price-val">${formatPrice(civ)}</span></div>
+  `;
+}
+
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   grid.innerHTML = '';
@@ -150,7 +209,7 @@ function renderProducts() {
     org: '⚔️ Armas — Org',
     acessorios: '🔧 Acessórios',
     coletes: '🛡️ Coletes',
-    bar: '🥤 Bar — Bebidas Energéticas',
+    bar: '🍸 Wu-Chang — Bar & Bebidas',
     moto: '🏍️ Motoclube — The Lost MC',
     mesa: '⚗️ Mesa Química',
   };
@@ -173,24 +232,12 @@ function renderProducts() {
       card.style.animationDelay = `${idx * 0.04}s`;
 
       const inCart = !!cart[p.id];
-      const matsHTML = Object.keys(p.mats).length > 0
-        ? Object.entries(p.mats).map(([k, v]) => `<span class="mat-tag">${k}: ${v}/un</span>`).join('')
+      const eff = getEffective(p);
+      const matsHTML = Object.keys(eff.mats).length > 0
+        ? Object.entries(eff.mats).map(([k, v]) => `<span class="mat-tag">${k}: ${v}/un</span>`).join('')
         : '<span class="mat-tag">Sem materiais</span>';
 
-      let priceDisplay = '';
-      if (p.cat === 'bairro') {
-        priceDisplay = `<div class="card-price-row"><span class="card-price-label">Blip/Parc</span><span class="card-price-val">${formatPrice(p.precoBlip)}</span></div>
-                        <div class="card-price-row"><span class="card-price-label">Civil</span><span class="card-price-val">${formatPrice(p.precoCivil)}</span></div>`;
-      } else if (p.cat === 'org') {
-        priceDisplay = `<div class="card-price-row"><span class="card-price-label">Preço Org</span><span class="card-price-val">${formatPrice(p.precoOrg)}</span></div>`;
-      } else if (p.cat === 'coletes' || p.cat === 'acessorios') {
-        priceDisplay = `<div class="card-price-row"><span class="card-price-label">Blip</span><span class="card-price-val">${formatPrice(p.precoBlip)}</span></div>
-                        <div class="card-price-row"><span class="card-price-label">Parceria</span><span class="card-price-val">${formatPrice(p.precoParc)}</span></div>`;
-      } else if (p.cat === 'mesa') {
-        priceDisplay = `<div class="card-price-row"><span class="card-price-label">Preço</span><span class="card-price-val">${formatPrice(p.precoMesa)}</span></div>`;
-      } else if (p.cat === 'bar' || p.cat === 'moto') {
-        priceDisplay = `<div class="card-price-row"><span class="card-price-label">Preço</span><span class="card-price-val">${formatPrice(p.precoBlip)}</span></div>`;
-      }
+      const priceDisplay = buildPriceRowsHTML(eff);
 
       const bpBadge = p.tipoBP ? `<span class="badge badge-type">${p.tipoBP}</span>` : '';
       const pecaBadge = p.tipoPeca ? `<span class="badge badge-type">${p.tipoPeca}</span>` : '';
@@ -376,12 +423,30 @@ function renderCartItems() {
   itemsDiv.innerHTML = keys.map(id => {
     const item = cart[id];
     const p = item.product;
+    const { blip, parc, civ } = getProduct3Prices(p);
+    const totalBlip = blip * item.qty;
+    const totalParc = parc * item.qty;
+    const totalCiv = civ * item.qty;
+
+    const catName = p.cat === 'bairro' ? 'Bairro'
+      : p.cat === 'org' ? 'Org'
+      : p.cat === 'acessorios' ? 'Acessório (' + (p.tipoBP || '') + ')'
+      : p.cat === 'coletes' ? 'Colete'
+      : p.cat === 'bar' ? 'Wu-Chang'
+      : p.cat === 'moto' ? 'The Lost MC'
+      : 'Mesa Química';
+
     return `
       <div class="cart-item" id="cartitem-${id}">
         <div class="cart-item-emoji">${getEmoji(p.cat, p.tipoBP)}</div>
         <div class="cart-item-info">
           <div class="cart-item-name">${p.name}</div>
-          <div class="cart-item-sub">${p.cat === 'bairro' ? 'Bairro' : p.cat === 'org' ? 'Org' : p.cat === 'acessorios' ? 'Acessório (' + p.tipoBP + ')' : p.cat === 'coletes' ? 'Colete' : p.cat === 'bar' ? 'Bar' : p.cat === 'moto' ? 'The Lost MC' : 'Mesa Química'}</div>
+          <div class="cart-item-sub">${catName}</div>
+          <div class="cart-item-prices">
+            <span class="cart-price-pill blip" title="Preço Blip"><span>🔵 Blip:</span> <strong>${formatPrice(totalBlip)}</strong> <small>(${formatPrice(blip)}/un)</small></span>
+            <span class="cart-price-pill parc" title="Preço Parceria"><span>🤝 Parceria:</span> <strong>${formatPrice(totalParc)}</strong> <small>(${formatPrice(parc)}/un)</small></span>
+            <span class="cart-price-pill civ" title="Preço Civil"><span>👤 Civil:</span> <strong>${formatPrice(totalCiv)}</strong> <small>(${formatPrice(civ)}/un)</small></span>
+          </div>
         </div>
         <div class="cart-item-qty">
           <button class="cart-qty-btn" onclick="cartChangeQty('${id}', -1)">−</button>
@@ -425,7 +490,9 @@ function clearCart() {
 
 // ========== RESUMO DE PRODUÇÃO & MATERIAIS CALC ==========
 function updateCartMaterials() {
-  let totalMoney = 0;
+  let totalBlip = 0;
+  let totalParc = 0;
+  let totalCivil = 0;
   let totalPecasBasicas = 0;
   let totalPecasAvancadas = 0;
   let totalBPs = 0;
@@ -433,11 +500,12 @@ function updateCartMaterials() {
   const totals = {};
 
   Object.values(cart).forEach(({ product: p, qty }) => {
-    const eff = getEffective(p);
+    const { blip, parc, civ, eff } = getProduct3Prices(p);
 
-    // Dinheiro
-    const unitPrice = eff.precoBlip || eff.precoOrg || eff.precoMesa || eff.precoCivil || 0;
-    totalMoney += unitPrice * qty;
+    // 3 Preços Totais
+    totalBlip += blip * qty;
+    totalParc += parc * qty;
+    totalCivil += civ * qty;
 
     // Peças de Armas
     if (p.tipoPeca === 'Básica' && p.pecasPerUnit) {
@@ -460,9 +528,18 @@ function updateCartMaterials() {
     });
   });
 
-  // Atualiza cartões KPI de Produção no Carrinho
+  // Atualiza cartões dos 3 Preços no Carrinho
+  const blipEl = document.getElementById('cartTotalBlip');
+  if (blipEl) blipEl.textContent = formatPrice(totalBlip);
+
+  const parcEl = document.getElementById('cartTotalParc');
+  if (parcEl) parcEl.textContent = formatPrice(totalParc);
+
+  const civEl = document.getElementById('cartTotalCivil');
+  if (civEl) civEl.textContent = formatPrice(totalCivil);
+
   const moneyEl = document.getElementById('cartTotalMoney');
-  if (moneyEl) moneyEl.textContent = formatPrice(totalMoney);
+  if (moneyEl) moneyEl.textContent = formatPrice(totalBlip);
 
   const basEl = document.getElementById('cartTotalPecasBasicas');
   if (basEl) basEl.textContent = totalPecasBasicas.toLocaleString('pt-PT') + ' un';
@@ -523,17 +600,20 @@ function exportOrder() {
   const lines = ['━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', '🐍  BLACK MAMBA — ENCOMENDA', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', ''];
   lines.push('📦 ITENS ENCOMENDADOS:');
   
-  let totalMoney = 0;
+  let totalBlip = 0;
+  let totalParc = 0;
+  let totalCivil = 0;
   let totalPecasBasicas = 0;
   let totalPecasAvancadas = 0;
   let totalBPs = 0;
   const bpsMap = {};
 
   Object.values(cart).forEach(({ product: p, qty }) => {
-    const eff = getEffective(p);
-    const unitPrice = eff.precoBlip || eff.precoOrg || eff.precoMesa || eff.precoCivil || 0;
-    totalMoney += unitPrice * qty;
-    lines.push(`  • ${p.name} × ${qty}`);
+    const { blip, parc, civ } = getProduct3Prices(p);
+    totalBlip += blip * qty;
+    totalParc += parc * qty;
+    totalCivil += civ * qty;
+    lines.push(`  • ${p.name} × ${qty}  [Blip: ${formatPrice(blip * qty)} | Parc: ${formatPrice(parc * qty)} | Civil: ${formatPrice(civ * qty)}]`);
 
     if (p.tipoPeca === 'Básica' && p.pecasPerUnit) totalPecasBasicas += p.pecasPerUnit * qty;
     if (p.tipoPeca === 'Avançada' && p.pecasPerUnit) totalPecasAvancadas += p.pecasPerUnit * qty;
@@ -547,8 +627,10 @@ function exportOrder() {
   });
 
   lines.push('');
-  lines.push('💵 CUSTO TOTAL EM DINHEIRO:');
-  lines.push(`  • ${formatPrice(totalMoney)}`);
+  lines.push('💰 RESUMO FINANCEIRO (3 PREÇOS):');
+  lines.push(`  • 🔵 Total Preço Blip:     ${formatPrice(totalBlip)}`);
+  lines.push(`  • 🤝 Total Preço Parceria: ${formatPrice(totalParc)}`);
+  lines.push(`  • 👤 Total Preço Civil:    ${formatPrice(totalCivil)}`);
 
   if (totalPecasBasicas > 0 || totalPecasAvancadas > 0) {
     lines.push('');
@@ -646,21 +728,33 @@ const CAT_BADGE_CLASSES = {
 const CAT_LABELS = { bairro: '🏘️ Bairro', org: '⚔️ Org', acessorios: '🔧 Acess.', coletes: '🛡️ Colete', bar: '🥤 Bar', moto: '🏍️ Lost MC', mesa: '⚗️ Mesa' };
 
 function getPriceKeys(p) {
-  if (p.cat === 'bairro') return [['precoBlip', 'Blip/Parc (€)'], ['precoCivil', 'Civil (€)'], ['precoSemPecas', 'S/Peças (€)']];
-  if (p.cat === 'org') return [['precoOrg', 'Preço Org (€)']];
-  if (p.cat === 'mesa') return [['precoMesa', 'Preço (€)']];
-  if (p.cat === 'bar' || p.cat === 'moto') return [['precoBlip', 'Preço (€)']];
-  return [['precoBlip', 'Blip (€)'], ['precoParc', 'Parceria (€)'], ['precoCivil', 'Civil (€)']];
-}
-
-function getEffective(p) {
-  // Returns product data merged with any config overrides
-  const ov = configOverrides[p.id] || {};
-  const prices = { ...p, ...(ov.prices || {}) };
-  const mats = { ...p.mats, ...(ov.mats || {}) };
-  // remove mats set to 0 from overrides
-  Object.keys(ov.mats || {}).forEach(k => { if (ov.mats[k] === 0) delete mats[k]; });
-  return { ...prices, mats };
+  if (p.cat === 'bairro') return [
+    ['precoBlip', 'Preço Blip (€)'],
+    ['precoParc', 'Preço Parceria (€)'],
+    ['precoCivil', 'Preço Civil (€)'],
+    ['precoSemPecas', 'S/Peças (€)']
+  ];
+  if (p.cat === 'org') return [
+    ['precoOrg', 'Preço Org (€)'],
+    ['precoBlip', 'Preço Blip (€)'],
+    ['precoParc', 'Preço Parceria (€)'],
+    ['precoCivil', 'Preço Civil (€)']
+  ];
+  if (p.cat === 'mesa') return [
+    ['precoMesa', 'Preço Mesa (€)'],
+    ['precoParc', 'Preço Parceria (€)'],
+    ['precoCivil', 'Preço Civil (€)']
+  ];
+  if (p.cat === 'bar' || p.cat === 'moto') return [
+    ['precoBlip', 'Preço Blip (€)'],
+    ['precoParc', 'Preço Parceria (€)'],
+    ['precoCivil', 'Preço Civil (€)']
+  ];
+  return [
+    ['precoBlip', 'Preço Blip (€)'],
+    ['precoParc', 'Preço Parceria (€)'],
+    ['precoCivil', 'Preço Civil (€)']
+  ];
 }
 
 function renderConfigList() {
@@ -771,12 +865,13 @@ function onCfgChange(input) {
     : configOverrides[id]?.mats?.[key] !== undefined;
   input.classList.toggle('changed', hasChange);
 
+  // Auto-save imediato no localStorage para persistência garantida em reset/reload de página
+  try {
+    localStorage.setItem('bm_config', JSON.stringify(configOverrides));
+  } catch (e) {}
+
   // Mark config tab if any overrides exist
-  const anyChanges = PRODUCTS.some(p => {
-    const ov = configOverrides[p.id];
-    return ov && (Object.keys(ov.prices || {}).length > 0 || Object.keys(ov.mats || {}).length > 0);
-  });
-  document.getElementById('stab-config').classList.toggle('has-changes', anyChanges);
+  checkAnyChanges();
 
   // Update the card + mod dot on cfg list
   refreshCard(id);
@@ -803,12 +898,10 @@ function refreshCfgDot(id) {
 }
 
 function refreshCard(id) {
-  // Re-render just the price rows + mat tags of the product card
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
   const eff = getEffective(p);
 
-  // Update price rows
   const card = document.getElementById(`card-${id}`);
   if (!card) return;
 
@@ -828,27 +921,11 @@ function refreshCard(id) {
   }
 }
 
-function buildPriceRowsHTML(eff) {
-  let html = '';
-  if (eff.cat === 'bairro') {
-    html += priceRow('Blip/Parc', eff.precoBlip) + priceRow('Civil', eff.precoCivil);
-  } else if (eff.cat === 'org') {
-    html += priceRow('Preço Org', eff.precoOrg);
-  } else if (eff.cat === 'coletes' || eff.cat === 'acessorios') {
-    html += priceRow('Blip', eff.precoBlip) + priceRow('Parceria', eff.precoParc);
-  } else if (eff.cat === 'mesa') {
-    html += priceRow('Preço', eff.precoMesa);
-  } else if (eff.cat === 'bar' || eff.cat === 'moto') {
-    html += priceRow('Preço', eff.precoBlip);
-  }
-  return html;
-}
-function priceRow(label, val) {
-  return `<div class="card-price-row"><span class="card-price-label">${label}</span><span class="card-price-val">${formatPrice(val)}</span></div>`;
-}
-
 function resetItemConfig(id) {
   delete configOverrides[id];
+  try {
+    localStorage.setItem('bm_config', JSON.stringify(configOverrides));
+  } catch(e) {}
   buildCfgBody(id);
   refreshCfgDot(id);
   refreshCard(id);
@@ -866,10 +943,10 @@ function resetAllConfig() {
     buildCfgBody(id);
     refreshCfgDot(id);
   });
-  PRODUCTS.forEach(p => refreshCard(p.id));
+  renderProducts();
   updateCartMaterials();
   checkAnyChanges();
-  showToast('↺ Todas as configs repostas');
+  showToast('↺ Todas as configurações repostas para o padrão');
 }
 
 function checkAnyChanges() {
@@ -877,19 +954,27 @@ function checkAnyChanges() {
     const ov = configOverrides[p.id];
     return ov && (Object.keys(ov.prices || {}).length > 0 || Object.keys(ov.mats || {}).length > 0);
   });
-  document.getElementById('stab-config').classList.toggle('has-changes', anyChanges);
+  const tab = document.getElementById('stab-config');
+  if (tab) tab.classList.toggle('has-changes', anyChanges);
 }
 
 function saveConfigToStorage() {
   localStorage.setItem('bm_config', JSON.stringify(configOverrides));
-  showToast('💾 Configurações guardadas!');
+  renderProducts();
+  if (Object.keys(cart).length > 0) updateCartMaterials();
+  showToast('💾 Configurações guardadas com sucesso!');
 }
 
 function loadConfigFromStorage() {
   try {
     const saved = localStorage.getItem('bm_config');
-    if (saved) { configOverrides = JSON.parse(saved); checkAnyChanges(); }
-  } catch (e) { configOverrides = {}; }
+    if (saved) {
+      configOverrides = JSON.parse(saved);
+      checkAnyChanges();
+    }
+  } catch (e) {
+    configOverrides = {};
+  }
 }
 
 function filterConfigList() {
@@ -902,7 +987,7 @@ function filterConfigList() {
 // ========== START ==========
 document.addEventListener('DOMContentLoaded', () => {
   loadConfigFromStorage();
-  init();
+  checkAuthOnLoad();
 });
 
 // ========== MAIN TABS ==========
@@ -1306,7 +1391,22 @@ function applyCustomParceriasPrices() {
   const prodMed = PRODUCTS.find(x => x.id === 'medickit_lost');
   if (prodMed) prodMed.precoBlip = p.lost_medickit;
   const prodColete = PRODUCTS.find(x => x.id === 'colete_fort');
-  if (prodColete) prodColete.precoBlip = p.c4_colete_parc;
+  if (prodColete) {
+    prodColete.precoParc = p.c4_colete_parc;
+    prodColete.precoCivil = p.c4_colete_civ;
+  }
+  const acessMap = {
+    'extclip_pistol': p.c4_extclip_pistol,
+    'sup_pistol': p.c4_sup_pistol,
+    'extclip_smg': p.c4_extclip_smg,
+    'sup_smg': p.c4_sup_smg,
+    'extclip_rifle': p.c4_extclip_rifle,
+    'sup_rifle': p.c4_sup_rifle
+  };
+  Object.entries(acessMap).forEach(([id, val]) => {
+    const prod = PRODUCTS.find(x => x.id === id);
+    if (prod) prod.precoParc = val;
+  });
 }
 
 function openParceriasConfigModal() {
@@ -1371,6 +1471,8 @@ function saveParceriasPrices() {
 
   localStorage.setItem('bm_custom_parcerias_prices', JSON.stringify(p));
   applyCustomParceriasPrices();
+  renderProducts();
+  if (Object.keys(cart).length > 0) updateCartMaterials();
   closeParceriasConfigModal();
   showToast('✓ Preços de parcerias guardados com sucesso!');
 }
@@ -1382,6 +1484,8 @@ function resetParceriasPrices() {
     if (cont) cont.innerHTML = DEFAULT_PARCERIAS_HTML;
   }
   applyCustomParceriasPrices();
+  renderProducts();
+  if (Object.keys(cart).length > 0) updateCartMaterials();
   closeParceriasConfigModal();
   showToast('↺ Preços de parcerias repostos para o padrão original');
 }
@@ -1529,19 +1633,22 @@ function applyDecryptedData(data) {
   HEIST_ITEMS = JSON.parse(JSON.stringify(data.heist));
   isVaultUnlocked = true;
 
-  // Aplica preços customizados guardados de barragens
+  // 1. Carrega overrides de configuração guardados para produtos e materiais
+  loadConfigFromStorage();
+
+  // 2. Aplica preços customizados guardados de barragens
   applyCustomHeistPrices();
 
-  // Injeta as tabelas de parcerias desencriptadas no DOM
+  // 3. Injeta as tabelas de parcerias desencriptadas no DOM
   const parcContainer = document.getElementById('parceriasContainer');
   if (parcContainer) {
     parcContainer.innerHTML = data.parceriasHTML;
   }
   
-  // Aplica preços customizados guardados de parcerias
+  // 4. Aplica preços customizados guardados de parcerias
   applyCustomParceriasPrices();
 
-  // Inicializa a aplicação com os dados reais
+  // 5. Inicializa a aplicação com os dados reais
   initApp();
 }
 
@@ -1710,9 +1817,11 @@ function logout() {
 
 // Renomeia o init original para initApp
 function initApp() {
+  loadConfigFromStorage();
+  applyCustomParceriasPrices();
   renderProducts();
   updateSidebarInfo();
   renderHeistItems();
   calcHeistTotal();
-  applyCustomParceriasPrices();
+  checkAnyChanges();
 }
