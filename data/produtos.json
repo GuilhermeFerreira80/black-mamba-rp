@@ -8,7 +8,7 @@
     "tipoBP": "Pistol",
     "pecasPerUnit": 20,
     "bpPerUnit": 4,
-    "precoBlip": 27000,
+    "precoBlip": 10000,
     "precoCivil": 37000,
     "precoSemPecas": 92000,
     "mats": {
@@ -18,7 +18,7 @@
       "Pedaço de metal": 20
     },
     "compatibilidade": null,
-    "precoParc": 25000
+    "precoParc": 27000
   },
   {
     "id": "tauros",
@@ -29,7 +29,7 @@
     "tipoBP": "Pistol",
     "pecasPerUnit": 25,
     "bpPerUnit": 5,
-    "precoBlip": 34000,
+    "precoBlip": 12500,
     "precoCivil": 46500,
     "precoSemPecas": 115000,
     "mats": {
@@ -39,7 +39,7 @@
       "Pedaço de metal": 25
     },
     "compatibilidade": null,
-    "precoParc": 32000
+    "precoParc": 34000
   },
   {
     "id": "tec9",
@@ -50,7 +50,7 @@
     "tipoBP": "SMG",
     "pecasPerUnit": 35,
     "bpPerUnit": 6,
-    "precoBlip": 48000,
+    "precoBlip": 17500,
     "precoCivil": 65500,
     "precoSemPecas": 160000,
     "mats": {
@@ -60,7 +60,7 @@
       "Pedaço de metal": 35
     },
     "compatibilidade": null,
-    "precoParc": 45000
+    "precoParc": 48000
   },
   {
     "id": "miniuzi",
@@ -71,7 +71,7 @@
     "tipoBP": "SMG",
     "pecasPerUnit": 45,
     "bpPerUnit": 9,
-    "precoBlip": 60000,
+    "precoBlip": 27000,
     "precoCivil": 87000,
     "precoSemPecas": 200000,
     "mats": {
@@ -82,7 +82,7 @@
       "Polímero": 22.5
     },
     "compatibilidade": null,
-    "precoParc": 55000
+    "precoParc": 60000
   },
   {
     "id": "draco",
@@ -93,7 +93,7 @@
     "tipoBP": "Rifle",
     "pecasPerUnit": 65,
     "bpPerUnit": 12,
-    "precoBlip": 85000,
+    "precoBlip": 38000,
     "precoCivil": 123000,
     "precoSemPecas": 285000,
     "mats": {
@@ -104,7 +104,7 @@
       "Polímero": 32.5
     },
     "compatibilidade": null,
-    "precoParc": 80000
+    "precoParc": 85000
   },
   {
     "id": "p90",
@@ -115,7 +115,7 @@
     "tipoBP": "Rifle",
     "pecasPerUnit": 80,
     "bpPerUnit": 16,
-    "precoBlip": 105000,
+    "precoBlip": 48000,
     "precoCivil": 153000,
     "precoSemPecas": 350000,
     "mats": {
@@ -126,7 +126,7 @@
       "Polímero": 40
     },
     "compatibilidade": null,
-    "precoParc": 100000
+    "precoParc": 105000
   },
   {
     "id": "ak47",
@@ -137,7 +137,7 @@
     "tipoBP": "Rifle",
     "pecasPerUnit": 110,
     "bpPerUnit": 22,
-    "precoBlip": 144000,
+    "precoBlip": 65000,
     "precoCivil": 209000,
     "precoSemPecas": 480000,
     "mats": {
@@ -148,7 +148,7 @@
       "Polímero": 55
     },
     "compatibilidade": null,
-    "precoParc": 135000
+    "precoParc": 144000
   },
   {
     "id": "vintage",
