@@ -1,0 +1,146 @@
+[
+  {
+    "id": "h_perfume",
+    "name": "Perfume",
+    "price": 300,
+    "emoji": "🧴"
+  },
+  {
+    "id": "h_vinhos",
+    "name": "Vinhos",
+    "price": 600,
+    "emoji": "🍷"
+  },
+  {
+    "id": "h_phone7",
+    "name": "Phone 7",
+    "price": 960,
+    "emoji": "📱"
+  },
+  {
+    "id": "h_pc",
+    "name": "PC",
+    "price": 1200,
+    "emoji": "💻"
+  },
+  {
+    "id": "h_tigre",
+    "name": "Tigre",
+    "price": 1620,
+    "emoji": "🐅"
+  },
+  {
+    "id": "h_quadro",
+    "name": "Quadro",
+    "price": 1752,
+    "emoji": "🖼️"
+  },
+  {
+    "id": "h_monitor",
+    "name": "Monitor",
+    "price": 3000,
+    "emoji": "🖥️"
+  },
+  {
+    "id": "h_relogio_ouro",
+    "name": "Relógio de Ouro",
+    "price": 3000,
+    "emoji": "⌚"
+  },
+  {
+    "id": "h_documentos",
+    "name": "Documentos",
+    "price": 1620,
+    "emoji": "📁"
+  },
+  {
+    "id": "h_tv_oled",
+    "name": "TV OLED",
+    "price": 3600,
+    "emoji": "📺"
+  },
+  {
+    "id": "h_arma_colecao",
+    "name": "Arma de Coleção",
+    "price": 8400,
+    "emoji": "🗡️"
+  },
+  {
+    "id": "h_patentes",
+    "name": "Patentes",
+    "price": 10000,
+    "emoji": "📜"
+  },
+  {
+    "id": "h_cx_contrabando",
+    "name": "Caixa Contrabando",
+    "price": 15000,
+    "emoji": "📦"
+  },
+  {
+    "id": "h_joias",
+    "name": "Jóias",
+    "price": 8300,
+    "emoji": "💎"
+  },
+  {
+    "id": "h_mala_gruppe6",
+    "name": "Mala Gruppe6",
+    "price": 20000,
+    "emoji": "💼"
+  },
+  {
+    "id": "h_cx_tabaco",
+    "name": "Caixa Tabaco",
+    "price": 30000,
+    "emoji": "🚬"
+  },
+  {
+    "id": "h_cx_eletronicos",
+    "name": "Caixa Eletrónicos",
+    "price": 40000,
+    "emoji": "🔌"
+  },
+  {
+    "id": "h_whisky_vintage",
+    "name": "Whisky Vintage",
+    "price": 60000,
+    "emoji": "🥃"
+  },
+  {
+    "id": "h_crypto_pen",
+    "name": "Crypto Pen",
+    "price": 120000,
+    "emoji": "🖊️"
+  },
+  {
+    "id": "h_aguia_bronze",
+    "name": "Águia de Bronze",
+    "price": 120000,
+    "emoji": "🦅"
+  },
+  {
+    "id": "h_cx_arma",
+    "name": "Caixa Arma",
+    "price": 140000,
+    "emoji": "🧰"
+  },
+  {
+    "id": "h_proto_sniper",
+    "name": "Protótipo Sniper",
+    "price": 200000,
+    "emoji": "🎯"
+  },
+  {
+    "id": "h_mala_diamantes",
+    "name": "Mala Diamantes",
+    "price": 400000,
+    "emoji": "🧳"
+  },
+  {
+    "id": "h_coroa",
+    "name": "Coroa",
+    "price": 600000,
+    "emoji": "👑"
+  }
+]

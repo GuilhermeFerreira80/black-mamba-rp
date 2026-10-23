@@ -684,6 +684,35 @@ body {
 }
 .cfg-btn-save:hover { background: rgba(16,185,129,0.22); }
 
+.cfg-actions-files {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.cfg-btn-file {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 7px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.1);
+  color: #c4b5fd;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cfg-btn-file:hover {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #fff;
+}
+
 .cfg-search-wrap { margin-bottom: 12px; }
 .cfg-search {
   width: 100%;

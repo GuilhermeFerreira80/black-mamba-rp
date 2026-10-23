@@ -189,8 +189,15 @@
           <div class="cfg-header">
             <p class="cfg-desc">Edita preços e materiais por unidade. As alterações aplicam-se imediatamente aos cards e ao carrinho.</p>
             <div class="cfg-actions-top">
-              <button class="cfg-btn-reset" onclick="resetAllConfig()">↺ Repor Padrão</button>
+              <button class="cfg-btn-reset" onclick="resetAllConfig()">↺ Repor</button>
               <button class="cfg-btn-save" onclick="saveConfigToStorage()">💾 Guardar</button>
+            </div>
+            <div class="cfg-actions-files">
+              <button class="cfg-btn-file" onclick="exportProdutosJson()" title="Descarregar produtos.json com as alterações">📥 Exportar JSON</button>
+              <label class="cfg-btn-file" title="Carregar um produtos.json do computador" style="cursor:pointer;margin:0;">
+                📤 Importar JSON
+                <input type="file" id="importJsonInput" accept=".json" style="display:none" onchange="importProdutosJson(event)" />
+              </label>
             </div>
           </div>
           <div class="cfg-search-wrap">

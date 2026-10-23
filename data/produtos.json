@@ -1,0 +1,848 @@
+[
+  {
+    "id": "fajuta",
+    "name": "Fajuta",
+    "emoji": "🔫",
+    "cat": "bairro",
+    "tipoPeca": "Básica",
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 20,
+    "bpPerUnit": 4,
+    "precoBlip": 27000,
+    "precoCivil": 37000,
+    "precoSemPecas": 92000,
+    "mats": {
+      "ABS": 20,
+      "Alumínio": 10,
+      "Borracha": 10,
+      "Pedaço de metal": 20
+    },
+    "compatibilidade": null,
+    "precoParc": 25000
+  },
+  {
+    "id": "tauros",
+    "name": "Tauros",
+    "emoji": "🔫",
+    "cat": "bairro",
+    "tipoPeca": "Básica",
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 25,
+    "bpPerUnit": 5,
+    "precoBlip": 34000,
+    "precoCivil": 46500,
+    "precoSemPecas": 115000,
+    "mats": {
+      "ABS": 25,
+      "Alumínio": 12.5,
+      "Borracha": 12.5,
+      "Pedaço de metal": 25
+    },
+    "compatibilidade": null,
+    "precoParc": 32000
+  },
+  {
+    "id": "tec9",
+    "name": "Tec-9",
+    "emoji": "💥",
+    "cat": "bairro",
+    "tipoPeca": "Básica",
+    "tipoBP": "SMG",
+    "pecasPerUnit": 35,
+    "bpPerUnit": 6,
+    "precoBlip": 48000,
+    "precoCivil": 65500,
+    "precoSemPecas": 160000,
+    "mats": {
+      "ABS": 35,
+      "Alumínio": 17.5,
+      "Borracha": 17.5,
+      "Pedaço de metal": 35
+    },
+    "compatibilidade": null,
+    "precoParc": 45000
+  },
+  {
+    "id": "miniuzi",
+    "name": "Mini-Uzi",
+    "emoji": "💥",
+    "cat": "bairro",
+    "tipoPeca": "Avançada",
+    "tipoBP": "SMG",
+    "pecasPerUnit": 45,
+    "bpPerUnit": 9,
+    "precoBlip": 60000,
+    "precoCivil": 87000,
+    "precoSemPecas": 200000,
+    "mats": {
+      "Alumínio": 22.5,
+      "Aço": 45,
+      "Borracha": 22.5,
+      "Bronze": 22.5,
+      "Polímero": 22.5
+    },
+    "compatibilidade": null,
+    "precoParc": 55000
+  },
+  {
+    "id": "draco",
+    "name": "Draco",
+    "emoji": "🎯",
+    "cat": "bairro",
+    "tipoPeca": "Avançada",
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 65,
+    "bpPerUnit": 12,
+    "precoBlip": 85000,
+    "precoCivil": 123000,
+    "precoSemPecas": 285000,
+    "mats": {
+      "Alumínio": 32.5,
+      "Aço": 65,
+      "Borracha": 32.5,
+      "Bronze": 32.5,
+      "Polímero": 32.5
+    },
+    "compatibilidade": null,
+    "precoParc": 80000
+  },
+  {
+    "id": "p90",
+    "name": "P90",
+    "emoji": "🎯",
+    "cat": "bairro",
+    "tipoPeca": "Avançada",
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 80,
+    "bpPerUnit": 16,
+    "precoBlip": 105000,
+    "precoCivil": 153000,
+    "precoSemPecas": 350000,
+    "mats": {
+      "Alumínio": 40,
+      "Aço": 80,
+      "Borracha": 40,
+      "Bronze": 40,
+      "Polímero": 40
+    },
+    "compatibilidade": null,
+    "precoParc": 100000
+  },
+  {
+    "id": "ak47",
+    "name": "AK-47",
+    "emoji": "🎯",
+    "cat": "bairro",
+    "tipoPeca": "Avançada",
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 110,
+    "bpPerUnit": 22,
+    "precoBlip": 144000,
+    "precoCivil": 209000,
+    "precoSemPecas": 480000,
+    "mats": {
+      "Alumínio": 55,
+      "Aço": 110,
+      "Borracha": 55,
+      "Bronze": 55,
+      "Polímero": 55
+    },
+    "compatibilidade": null,
+    "precoParc": 135000
+  },
+  {
+    "id": "vintage",
+    "name": "Vintage",
+    "emoji": "🔫",
+    "cat": "org",
+    "tipoPeca": "Básica",
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 15,
+    "bpPerUnit": 3,
+    "precoBlip": null,
+    "precoOrg": 20000,
+    "mats": {
+      "ABS": 15,
+      "Alumínio": 7.5,
+      "Borracha": 7.5,
+      "Pedaço de metal": 15
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "cinquenta",
+    "name": ".50",
+    "emoji": "🔫",
+    "cat": "org",
+    "tipoPeca": "Básica",
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 50,
+    "bpPerUnit": 10,
+    "precoBlip": null,
+    "precoOrg": 70000,
+    "mats": {
+      "ABS": 50,
+      "Alumínio": 25,
+      "Borracha": 25,
+      "Pedaço de metal": 50
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "colt",
+    "name": "Colt",
+    "emoji": "🔫",
+    "cat": "org",
+    "tipoPeca": "Básica",
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 40,
+    "bpPerUnit": 8,
+    "precoBlip": null,
+    "precoOrg": 55000,
+    "mats": {
+      "ABS": 40,
+      "Alumínio": 20,
+      "Borracha": 20,
+      "Pedaço de metal": 40
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "pdw",
+    "name": "PDW",
+    "emoji": "💥",
+    "cat": "org",
+    "tipoPeca": "Avançada",
+    "tipoBP": "SMG",
+    "pecasPerUnit": 75,
+    "bpPerUnit": 15,
+    "precoBlip": null,
+    "precoOrg": 100000,
+    "mats": {
+      "Alumínio": 37.5,
+      "Aço": 75,
+      "Borracha": 37.5,
+      "Bronze": 37.5,
+      "Polímero": 37.5
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "famas",
+    "name": "FAMAS",
+    "emoji": "🎯",
+    "cat": "org",
+    "tipoPeca": "Avançada",
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 120,
+    "bpPerUnit": 24,
+    "precoBlip": null,
+    "precoOrg": 160000,
+    "mats": {
+      "Alumínio": 60,
+      "Aço": 120,
+      "Borracha": 60,
+      "Bronze": 60,
+      "Polímero": 60
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "spas12",
+    "name": "Spas-12",
+    "emoji": "💥",
+    "cat": "org",
+    "tipoPeca": "Avançada",
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 30,
+    "bpPerUnit": 6,
+    "precoBlip": null,
+    "precoOrg": 40000,
+    "mats": {
+      "Alumínio": 15,
+      "Aço": 30,
+      "Borracha": 15,
+      "Bronze": 15,
+      "Polímero": 15
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "tar21",
+    "name": "TAR-21",
+    "emoji": "🎯",
+    "cat": "org",
+    "tipoPeca": "Avançada",
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 120,
+    "bpPerUnit": 24,
+    "precoBlip": null,
+    "precoOrg": 160000,
+    "mats": {
+      "Alumínio": 60,
+      "Aço": 120,
+      "Borracha": 60,
+      "Bronze": 60,
+      "Polímero": 60
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "thompson",
+    "name": "Thompson",
+    "emoji": "💥",
+    "cat": "org",
+    "tipoPeca": "Avançada",
+    "tipoBP": "SMG",
+    "pecasPerUnit": 45,
+    "bpPerUnit": 6,
+    "precoBlip": null,
+    "precoOrg": 72000,
+    "mats": {
+      "Alumínio": 22.5,
+      "Aço": 45,
+      "Borracha": 22.5,
+      "Bronze": 22.5,
+      "Polímero": 22.5
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "military",
+    "name": "Military",
+    "emoji": "🎯",
+    "cat": "org",
+    "tipoPeca": "Avançada",
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 110,
+    "bpPerUnit": 22,
+    "precoBlip": null,
+    "precoOrg": 144000,
+    "mats": {
+      "Alumínio": 55,
+      "Aço": 110,
+      "Borracha": 55,
+      "Bronze": 55,
+      "Polímero": 55
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "ranger12",
+    "name": "Ranger 12",
+    "emoji": "🔫",
+    "cat": "org",
+    "tipoPeca": "Básica",
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 25,
+    "bpPerUnit": 5,
+    "precoBlip": null,
+    "precoOrg": 30000,
+    "mats": {
+      "ABS": 25,
+      "Alumínio": 12.5,
+      "Borracha": 12.5,
+      "Pedaço de metal": 25
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "comp_pistol",
+    "name": "Compensador",
+    "emoji": "🔧",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 350,
+    "precoParc": 1500,
+    "precoCivil": 1850,
+    "mats": {
+      "Alumínio": 2,
+      "Aço": 2
+    },
+    "compatibilidade": "Fajuta / Revolver"
+  },
+  {
+    "id": "extclip_pistol",
+    "name": "EXT. Clip",
+    "emoji": "📎",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1250,
+    "precoParc": 2500,
+    "precoCivil": 3750,
+    "mats": {
+      "Alumínio": 3,
+      "Plástico": 3
+    },
+    "compatibilidade": "Vintage / Fajuta / AP / Tec-9 / .50"
+  },
+  {
+    "id": "flash_pistol",
+    "name": "Flashlight",
+    "emoji": "🔦",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1000,
+    "precoParc": 1000,
+    "precoCivil": 2000,
+    "mats": {
+      "Restos": 1
+    },
+    "compatibilidade": "Fajuta / Revolver / AP / .50"
+  },
+  {
+    "id": "scope_pistol",
+    "name": "Scope",
+    "emoji": "🔭",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1000,
+    "precoParc": 1000,
+    "precoCivil": 2000,
+    "mats": {
+      "Restos": 1
+    },
+    "compatibilidade": "Fajuta"
+  },
+  {
+    "id": "sup_pistol",
+    "name": "Supressor",
+    "emoji": "🔇",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Pistol",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1250,
+    "precoParc": 2500,
+    "precoCivil": 3750,
+    "mats": {
+      "Alumínio": 3,
+      "Plástico": 3
+    },
+    "compatibilidade": "Vintage / Fajuta / AP / Tec-9 / .50"
+  },
+  {
+    "id": "extclip_smg",
+    "name": "EXT. Clip",
+    "emoji": "📎",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "SMG",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 2500,
+    "precoParc": 6000,
+    "precoCivil": 8500,
+    "mats": {
+      "Alumínio": 7,
+      "Plástico": 7
+    },
+    "compatibilidade": "Uzi / PDW / Thompson / P90"
+  },
+  {
+    "id": "flash_smg",
+    "name": "Flashlight",
+    "emoji": "🔦",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "SMG",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1500,
+    "precoParc": 1000,
+    "precoCivil": 2500,
+    "mats": {
+      "Restos": 1
+    },
+    "compatibilidade": "Uzi / PDW / P90"
+  },
+  {
+    "id": "scope_smg",
+    "name": "Scope",
+    "emoji": "🔭",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "SMG",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1500,
+    "precoParc": 1000,
+    "precoCivil": 2500,
+    "mats": {
+      "Restos": 1
+    },
+    "compatibilidade": "Uzi / PDW / P90"
+  },
+  {
+    "id": "sup_smg",
+    "name": "Supressor",
+    "emoji": "🔇",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "SMG",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1500,
+    "precoParc": 4000,
+    "precoCivil": 5500,
+    "mats": {
+      "Alumínio": 5,
+      "Plástico": 5
+    },
+    "compatibilidade": "UZI / P90"
+  },
+  {
+    "id": "drum_smg",
+    "name": "Drum",
+    "emoji": "🥁",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "SMG",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 3500,
+    "precoParc": 7500,
+    "precoCivil": 11000,
+    "mats": {
+      "Alumínio": 10,
+      "Plástico": 10
+    },
+    "compatibilidade": "Tec-9 / Draco / PDW"
+  },
+  {
+    "id": "extclip_rifle",
+    "name": "EXT. Clip",
+    "emoji": "📎",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 4500,
+    "precoParc": 10000,
+    "precoCivil": 14500,
+    "mats": {
+      "Alumínio": 12,
+      "Plástico": 12
+    },
+    "compatibilidade": "AK / Famas / TAR"
+  },
+  {
+    "id": "sup_rifle",
+    "name": "Supressor",
+    "emoji": "🔇",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 3500,
+    "precoParc": 7500,
+    "precoCivil": 11000,
+    "mats": {
+      "Alumínio": 10,
+      "Plástico": 10
+    },
+    "compatibilidade": "AK / Famas / TAR"
+  },
+  {
+    "id": "heavybarrel",
+    "name": "Heavy Barrel",
+    "emoji": "🔩",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 3500,
+    "precoParc": 7500,
+    "precoCivil": 11000,
+    "mats": {
+      "Alumínio": 10,
+      "Plástico": 10
+    },
+    "compatibilidade": "AK / Famas"
+  },
+  {
+    "id": "muzzle",
+    "name": "Muzzle (precision)",
+    "emoji": "🔩",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 3500,
+    "precoParc": 7500,
+    "precoCivil": 11000,
+    "mats": {
+      "Alumínio": 10,
+      "Plástico": 10
+    },
+    "compatibilidade": "AK / Famas"
+  },
+  {
+    "id": "grip_rifle",
+    "name": "Grip/SMG",
+    "emoji": "🖐️",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 3500,
+    "precoParc": 7500,
+    "precoCivil": 11000,
+    "mats": {
+      "Alumínio": 10,
+      "Plástico": 10
+    },
+    "compatibilidade": "AK / Famas / PDW"
+  },
+  {
+    "id": "scope_rifle",
+    "name": "Scope (Rifle)",
+    "emoji": "🔭",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1500,
+    "precoParc": 1000,
+    "precoCivil": 2500,
+    "mats": {
+      "Restos": 1
+    },
+    "compatibilidade": "AK / Famas / TAR"
+  },
+  {
+    "id": "flash_rifle",
+    "name": "Flashlight",
+    "emoji": "🔦",
+    "cat": "acessorios",
+    "tipoPeca": null,
+    "tipoBP": "Rifle",
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1500,
+    "precoParc": 1000,
+    "precoCivil": 2500,
+    "mats": {
+      "Restos": 1
+    },
+    "compatibilidade": "AK / Famas / TAR"
+  },
+  {
+    "id": "colete_fort",
+    "name": "Colete Fortalecido",
+    "emoji": "🛡️",
+    "cat": "coletes",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 5500,
+    "precoParc": 6500,
+    "precoCivil": 12500,
+    "mats": {
+      "Pele": 3,
+      "Fibra": 5,
+      "Tecido": 5,
+      "Couro": 2
+    },
+    "compatibilidade": "Todos"
+  },
+  {
+    "id": "mesa_civil_mat",
+    "name": "Mesa Civil (C/ Mats)",
+    "emoji": "⚗️",
+    "cat": "mesa",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoCivil": null,
+    "precoMesa": 25000,
+    "mats": {
+      "Vidro": 15,
+      "Estanho": 10,
+      "Cobre": 5,
+      "Aço": 5
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "mesa_civil_sem",
+    "name": "Mesa Civil (S/ Mats)",
+    "emoji": "⚗️",
+    "cat": "mesa",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoCivil": null,
+    "precoMesa": 60000,
+    "mats": {},
+    "compatibilidade": null
+  },
+  {
+    "id": "mesa_parc_mat",
+    "name": "Mesa Parceria (C/ Mats)",
+    "emoji": "⚗️",
+    "cat": "mesa",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoCivil": null,
+    "precoMesa": 15000,
+    "mats": {
+      "Vidro": 15,
+      "Estanho": 10,
+      "Cobre": 5,
+      "Aço": 5
+    },
+    "compatibilidade": null
+  },
+  {
+    "id": "mesa_parc_sem",
+    "name": "Mesa Parceria (S/ Mats)",
+    "emoji": "⚗️",
+    "cat": "mesa",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoCivil": null,
+    "precoMesa": 50000,
+    "mats": {},
+    "compatibilidade": null
+  },
+  {
+    "id": "energetico_mat",
+    "name": "Energético (C/ Mats)",
+    "emoji": "🥤",
+    "cat": "bar",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 4000,
+    "precoCivil": 4000,
+    "mats": {
+      "Latas": 1,
+      "Estimulantes": 3
+    },
+    "compatibilidade": "Bar / Bebidas Energéticas (1 Lata + 3 Estimulantes)",
+    "catName": "Wu-Chang"
+  },
+  {
+    "id": "energetico_sem",
+    "name": "Energético (S/ Mats)",
+    "emoji": "🥤",
+    "cat": "bar",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 12000,
+    "precoCivil": 12000,
+    "mats": {},
+    "compatibilidade": "Bar / Bebidas Energéticas (Sem Materiais)",
+    "catName": "Wu-Chang"
+  },
+  {
+    "id": "taco_lost",
+    "name": "Taco (Lucille)",
+    "emoji": "🏏",
+    "cat": "moto",
+    "tipoPeca": "Básica",
+    "tipoBP": null,
+    "pecasPerUnit": 10,
+    "bpPerUnit": 0,
+    "precoBlip": 15000,
+    "precoCivil": 15000,
+    "mats": {
+      "Peças Básicas": 10
+    },
+    "compatibilidade": "The Lost MC — 10 peças básicas + 15k sujos"
+  },
+  {
+    "id": "medickit_lost",
+    "name": "Medickit",
+    "emoji": "🩹",
+    "cat": "moto",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 25000,
+    "precoCivil": 25000,
+    "mats": {
+      "Óleos": 5
+    },
+    "compatibilidade": "The Lost MC — 25k + 5 óleos"
+  },
+  {
+    "id": "proc_medickit",
+    "name": "Proc: Medickit Policial",
+    "emoji": "➕",
+    "cat": "moto",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1500,
+    "precoCivil": 1500,
+    "mats": {
+      "Medickit Polícia": 2
+    },
+    "compatibilidade": "The Lost MC — 2 Medickits Polícia + 1.500€ sujos por 1 Medickit"
+  },
+  {
+    "id": "proc_colete",
+    "name": "Proc: Colete Policial",
+    "emoji": "🦺",
+    "cat": "moto",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 1500,
+    "precoCivil": 1500,
+    "mats": {
+      "Colete Polícia": 2
+    },
+    "compatibilidade": "The Lost MC — 2 Coletes Polícia + 1.500€ sujos por 1 Colete"
+  },
+  {
+    "id": "proc_energetico",
+    "name": "Proc: Energético Policial",
+    "emoji": "⚡",
+    "cat": "moto",
+    "tipoPeca": null,
+    "tipoBP": null,
+    "pecasPerUnit": 0,
+    "bpPerUnit": 0,
+    "precoBlip": 0,
+    "precoCivil": 0,
+    "mats": {
+      "Energético Polícia": 2
+    },
+    "compatibilidade": "The Lost MC — 2 Energéticos Polícia por 1 Energético"
+  }
+]

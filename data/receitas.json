@@ -1,0 +1,46 @@
+{
+  "ABS": [
+    {
+      "mat": "Fibra",
+      "qty": 1
+    },
+    {
+      "mat": "Plástico",
+      "qty": 1
+    }
+  ],
+  "Aço": [
+    {
+      "mat": "Carvão",
+      "qty": 1
+    },
+    {
+      "mat": "Lingote Ferro",
+      "qty": 1
+    }
+  ],
+  "Bronze": [
+    {
+      "mat": "Cobre",
+      "qty": 1
+    },
+    {
+      "mat": "Estanho",
+      "qty": 1
+    }
+  ],
+  "Polímero": [
+    {
+      "mat": "Carvão",
+      "qty": 1
+    },
+    {
+      "mat": "Petróleo",
+      "qty": 1
+    },
+    {
+      "mat": "Vidro",
+      "qty": 1
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "black-mamba-rp",
+  "version": "1.0.0",
+  "description": "Sistema de Encomendas, Barragens e Parcerias — Black Mamba",
+  "main": "app.js",
+  "scripts": {
+    "build": "node build.js",
+    "start": "python -m http.server 8080"
+  },
+  "keywords": [
+    "black-mamba",
+    "gtarp",
+    "encomendas"
+  ],
+  "author": "Guilherme Ferreira",
+  "license": "ISC"
+}

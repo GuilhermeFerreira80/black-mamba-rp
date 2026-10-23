@@ -1,0 +1,338 @@
+<!-- BAR & DRAGON -->
+      <div class="parceria-card card-bar">
+        <div class="parceria-card-header">
+          <div class="parceria-badge bar-badge">🏮 Parceria Oficial • Wu-Chang</div>
+          <h2 class="parceria-title">Wu-Chang — <span class="dragon-gold">Bar & Precários</span></h2>
+          <p class="parceria-sub">Parceria oficial Wu-Chang: Serviços gerais, lavagem e bebidas energéticas</p>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>⚡</span> Percentagens de Serviços</h3>
+          <table class="parceria-table">
+            <thead>
+              <tr>
+                <th>Serviço</th>
+                <th style="text-align:right">Taxa / %</th>
+                <th style="text-align:right">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="service-dot red"></span> Lavagem</td>
+                <td class="rate-val red">15%</td>
+                <td style="text-align:right"><button class="btn-chip" onclick="applyHeistTaxAndOpen(15)">Usar 15%</button></td>
+              </tr>
+              <tr>
+                <td><span class="service-dot gold"></span> Barragem</td>
+                <td class="rate-val gold">10%</td>
+                <td style="text-align:right"><button class="btn-chip gold" onclick="applyHeistTaxAndOpen(10)">Usar nas Barragens</button></td>
+              </tr>
+              <tr>
+                <td><span class="service-dot green"></span> Encomendas e Ferro Velho</td>
+                <td class="rate-val green">10%</td>
+                <td style="text-align:right"><span class="badge-tag">Padrão</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>🥤</span> Parcerias — Bebidas Energéticas</h3>
+          <div class="energy-options">
+            <div class="energy-card">
+              <div class="energy-card-top">
+                <span class="energy-type">✅ Com Materiais</span>
+                <span class="energy-price">4.000 €</span>
+              </div>
+              <div class="energy-mats">
+                <span class="mat-chip">🥫 1 Lata</span>
+                <span class="mat-chip">💊 3 Estimulantes</span>
+              </div>
+              <button class="btn-add-quick" onclick="quickAdd('energetico_mat')">+ Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="energy-card">
+              <div class="energy-card-top">
+                <span class="energy-type">✅ Sem Materiais</span>
+                <span class="energy-price">12.000 €</span>
+              </div>
+              <div class="energy-mats">
+                <span class="mat-chip empty">Sem materiais necessários</span>
+              </div>
+              <button class="btn-add-quick" onclick="quickAdd('energetico_sem')">+ Adicionar ao Carrinho</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE LOST MC -->
+      <div class="parceria-card card-lostmc">
+        <div class="parceria-card-header">
+          <div class="parceria-badge mc-badge">🏍️ The Lost MC • Los Santos</div>
+          <h2 class="parceria-title">The Lost MC — <span class="mc-orange">Oficina & Precários</span></h2>
+          <p class="parceria-sub">Nós somos o Motoclube a parceria é com os BlackMamba (Bairro)</p>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>🔧</span> Descontos na Nossa Oficina</h3>
+          <table class="parceria-table">
+            <thead>
+              <tr>
+                <th>Cargo / Patente</th>
+                <th style="text-align:right">Desconto</th>
+                <th>Serviço</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>OG</strong></td>
+                <td class="rate-val orange">35%</td>
+                <td class="service-note">Em todos os serviços de oficina</td>
+              </tr>
+              <tr>
+                <td><strong>SUB OG</strong></td>
+                <td class="rate-val orange">30%</td>
+                <td class="service-note">Em todos os serviços de oficina</td>
+              </tr>
+              <tr>
+                <td><strong>Braço Direito</strong></td>
+                <td class="rate-val orange">25%</td>
+                <td class="service-note">Em todos os serviços de oficina</td>
+              </tr>
+              <tr>
+                <td><strong>Oficial</strong></td>
+                <td class="rate-val orange">20%</td>
+                <td class="service-note">Em todos os serviços de oficina</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>🔧 <strong>Reparações Gerais</strong></td>
+                <td class="rate-val green" colspan="2">2.000 € (Para Todos)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>📦</span> Precário de Tacos + Medickits</h3>
+          <div class="mc-grid">
+            <div class="mc-item">
+              <div class="mc-item-header">
+                <span class="mc-item-name">🏏 Tacos (Lucille)</span>
+                <span class="mc-item-price">15.000 € <small>sujos</small></span>
+              </div>
+              <div class="mc-item-mats">10 Peças Básicas (cada)</div>
+              <button class="btn-add-quick" onclick="quickAdd('taco_lost')">+ Adicionar Taco</button>
+            </div>
+            <div class="mc-item">
+              <div class="mc-item-header">
+                <span class="mc-item-name">🩹 Medickits</span>
+                <span class="mc-item-price">25.000 €</span>
+              </div>
+              <div class="mc-item-mats">5 Óleos (cada)</div>
+              <button class="btn-add-quick" onclick="quickAdd('medickit_lost')">+ Adicionar Medickit</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="parceria-section">
+          <h3 class="parceria-sec-title"><span>🛡️</span> Processos (Trocas Policiais)</h3>
+          <div class="process-list">
+            <div class="process-card">
+              <div class="process-info">
+                <div class="process-name">➕ Medickit da Polícia</div>
+                <div class="process-desc">2 Medickits da polícia + 1.500 € sujos ➔ <strong>1 Medickit</strong></div>
+              </div>
+              <button class="btn-chip" onclick="quickAdd('proc_medickit')">+ Pedir</button>
+            </div>
+            <div class="process-card">
+              <div class="process-info">
+                <div class="process-name">🦺 Colete da Polícia</div>
+                <div class="process-desc">2 Coletes da polícia + 1.500 € sujos ➔ <strong>1 Colete</strong></div>
+              </div>
+              <button class="btn-chip" onclick="quickAdd('proc_colete')">+ Pedir</button>
+            </div>
+            <div class="process-card">
+              <div class="process-info">
+                <div class="process-name">⚡ Energético da Polícia</div>
+                <div class="process-desc">2 Energéticos da polícia ➔ <strong>1 Energético</strong></div>
+              </div>
+              <button class="btn-chip" onclick="quickAdd('proc_energetico')">+ Pedir</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="parceria-footer-note">
+          1% • NÓS SOMOS O MOTOCLUBE A PARCERIA É COM OS BLACKMAMBA (BAIRRO) • 1%
+        </div>
+      </div>
+
+      <!-- CARTEL MADRAZO (C4) -->
+      <div class="parceria-card card-madrazo">
+        <div class="parceria-card-header">
+          <div class="parceria-badge madrazo-badge">👑 Cartel Madrazo • C4</div>
+          <h2 class="parceria-title">Cartel Madrazo — <span class="madrazo-gold">Acessórios & Coletes</span></h2>
+          <p class="parceria-sub">"O poder tem um preço." • QUALIDADE • CONFIANÇA • RESPEITO</p>
+        </div>
+
+        <div class="parceria-section">
+          <div class="madrazo-filter-bar">
+            <span class="madrazo-filter-label">Filtrar Acessórios:</span>
+            <button class="c4-filter-btn active" onclick="filterC4Table('all')">Todos</button>
+            <button class="c4-filter-btn" onclick="filterC4Table('pistol')">🔫 Pistola</button>
+            <button class="c4-filter-btn" onclick="filterC4Table('smg')">💥 SMG</button>
+            <button class="c4-filter-btn" onclick="filterC4Table('rifle')">🎯 Rifle</button>
+            <button class="c4-filter-btn" onclick="filterC4Table('colete')">🛡️ Colete</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="c4-table" id="c4Table">
+              <thead>
+                <tr>
+                  <th>Item / Acessório</th>
+                  <th>Materiais Necessários</th>
+                  <th style="text-align:right">Civil</th>
+                  <th style="text-align:right">Parceria</th>
+                  <th style="text-align:center">Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- PISTOL -->
+                <tr data-c4type="pistol" class="c4-category-header">
+                  <td colspan="5">🔫 ACESSÓRIOS PISTOL</td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>Compensado</strong></td>
+                  <td><span class="c4-mat">2 Alumínio</span><span class="c4-mat">2 Aço</span></td>
+                  <td class="c4-price-civ">1.850 €</td>
+                  <td class="c4-price-parc">1.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('comp_pistol')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>EXT. clip</strong></td>
+                  <td><span class="c4-mat">3 Alumínio</span><span class="c4-mat">3 Plástico</span></td>
+                  <td class="c4-price-civ">3.750 €</td>
+                  <td class="c4-price-parc">2.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('extclip_pistol')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>Flashlight</strong></td>
+                  <td><span class="c4-mat">1 Restos</span></td>
+                  <td class="c4-price-civ">2.000 €</td>
+                  <td class="c4-price-parc">1.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('flash_pistol')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>Scope</strong></td>
+                  <td><span class="c4-mat">1 Restos</span></td>
+                  <td class="c4-price-civ">2.000 €</td>
+                  <td class="c4-price-parc">1.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('scope_pistol')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="pistol">
+                  <td><strong>Suppressor</strong></td>
+                  <td><span class="c4-mat">3 Alumínio</span><span class="c4-mat">3 Plástico</span></td>
+                  <td class="c4-price-civ">3.750 €</td>
+                  <td class="c4-price-parc">2.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('sup_pistol')">+ Pedir</button></td>
+                </tr>
+
+                <!-- SMG -->
+                <tr data-c4type="smg" class="c4-category-header">
+                  <td colspan="5">💥 ACESSÓRIOS SMG</td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>EXT. clip</strong></td>
+                  <td><span class="c4-mat">7 Alumínio</span><span class="c4-mat">7 Plástico</span></td>
+                  <td class="c4-price-civ">8.500 €</td>
+                  <td class="c4-price-parc">6.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('extclip_smg')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>Flashlight</strong></td>
+                  <td><span class="c4-mat">1 Restos</span></td>
+                  <td class="c4-price-civ">2.500 €</td>
+                  <td class="c4-price-parc">1.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('flash_smg')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>Scope</strong></td>
+                  <td><span class="c4-mat">1 Restos</span></td>
+                  <td class="c4-price-civ">2.500 €</td>
+                  <td class="c4-price-parc">1.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('scope_smg')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>Suppressor</strong></td>
+                  <td><span class="c4-mat">5 Alumínio</span><span class="c4-mat">5 Plástico</span></td>
+                  <td class="c4-price-civ">5.500 €</td>
+                  <td class="c4-price-parc">4.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('sup_smg')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="smg">
+                  <td><strong>Drum</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('drum_smg')">+ Pedir</button></td>
+                </tr>
+
+                <!-- RIFLE -->
+                <tr data-c4type="rifle" class="c4-category-header">
+                  <td colspan="5">🎯 ACESSÓRIOS RIFLE</td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>EXT. clip</strong></td>
+                  <td><span class="c4-mat">12 Alumínio</span><span class="c4-mat">12 Plástico</span></td>
+                  <td class="c4-price-civ">14.500 €</td>
+                  <td class="c4-price-parc">10.000 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('extclip_rifle')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>Suppressor</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('sup_rifle')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>Heavy Barrel</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('heavybarrel')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>Muzzle (precision)</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('muzzle')">+ Pedir</button></td>
+                </tr>
+                <tr data-c4type="rifle">
+                  <td><strong>Grip/SMG</strong></td>
+                  <td><span class="c4-mat">10 Alumínio</span><span class="c4-mat">10 Plástico</span></td>
+                  <td class="c4-price-civ">11.000 €</td>
+                  <td class="c4-price-parc">7.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('grip_rifle')">+ Pedir</button></td>
+                </tr>
+
+                <!-- COLETE -->
+                <tr data-c4type="colete" class="c4-category-header">
+                  <td colspan="5">🛡️ COLETES</td>
+                </tr>
+                <tr data-c4type="colete">
+                  <td><strong>Colete Fortalecido</strong></td>
+                  <td><span class="c4-mat">3 Pele</span><span class="c4-mat">5 Fibra</span><span class="c4-mat">5 Tecido</span><span class="c4-mat">2 Couro</span></td>
+                  <td class="c4-price-civ">12.500 €</td>
+                  <td class="c4-price-parc">12.500 €</td>
+                  <td style="text-align:center"><button class="btn-chip gold" onclick="quickAdd('colete_fort')">+ Pedir</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="parceria-footer-note c4-footer">
+          👑 C4 • CARTEL MADRAZO — FORNECEDOR OFICIAL BLACK MAMBA • 👑
+        </div>
+      </div>
