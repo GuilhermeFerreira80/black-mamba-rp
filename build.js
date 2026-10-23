@@ -136,6 +136,17 @@ function buildVault() {
   appJs = appJs.replace(vaultRegex, newVaultDecl);
   fs.writeFileSync(APP_JS_PATH, appJs, 'utf8');
 
+  // 6. Atualizar versão de cache em index.html (cache-busting automático para o navegador não usar ficheiro antigo)
+  const INDEX_HTML_PATH = path.join(__dirname, 'index.html');
+  if (fs.existsSync(INDEX_HTML_PATH)) {
+    const buildVer = Date.now().toString(36);
+    let html = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
+    html = html.replace(/src="app\.js(?:\?v=[^"']*)?"/g, `src="app.js?v=${buildVer}"`);
+    html = html.replace(/href="style\.css(?:\?v=[^"']*)?"/g, `href="style.css?v=${buildVer}"`);
+    fs.writeFileSync(INDEX_HTML_PATH, html, 'utf8');
+    log(`  ✓ Versão de cache atualizada em index.html (?v=${buildVer})`, colors.green);
+  }
+
   log('\n🎉 SUCESSO! O cofre foi compilado e app.js foi atualizado!', colors.bold + colors.green);
   log('------------------------------------------------------------', colors.cyan);
   log('👉 Agora podes abrir o site ou fazer git push com os novos dados.', colors.cyan);

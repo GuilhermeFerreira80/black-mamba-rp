@@ -33,6 +33,9 @@ if /i "%PUSH_GITHUB%"=="S" (
     ) else (
         echo.
         echo [SUCESSO] O teu repositorio no GitHub foi atualizado!
+        echo.
+        echo [DICA] O GitHub Pages demora cerca de 1 a 2 minutos a atualizar o site.
+        echo        No teu navegador, prime Ctrl + F5 para recarregar sem cache!
     )
 ) else (
     echo.
